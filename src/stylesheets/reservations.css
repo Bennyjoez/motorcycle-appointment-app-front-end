@@ -1,0 +1,16 @@
+
+.reservations-main-container{
+    display: grid;
+    grid-template-columns: 12vw 88vw;
+    grid-template-rows: 100vh;
+}
+
+.reservations-nav-container{
+    grid-row: 1/2;
+    grid-column: 1/2;
+}
+
+.reservations-body{
+    grid-row: 1/2;
+    grid-column: 2/3;
+}
