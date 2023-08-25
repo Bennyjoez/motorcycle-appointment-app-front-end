@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import sessionsSlice from '../../redux/sessions/sessionsSlice';
+import '../../stylesheets/register.css';
 
 const Register = () => {
   const dispatch = useDispatch();
@@ -17,7 +18,7 @@ const Register = () => {
   const validate = () => {
     setClickedState(true);
     if (usernameState.length === 0) {
-      setValidMsgState('Username field can not be empty');
+      setValidMsgState('Username field cannot be empty');
       setValidDisplayState(true);
       setExistState(false);
     } else if (usernameState.length < 6) {
@@ -25,7 +26,12 @@ const Register = () => {
       setValidDisplayState(true);
       setExistState(false);
     } else if (usernameState.length >= 6) {
-      dispatch(sessionsSlice({ obj: { username: usernameState }, endpoint: 'register' }));
+      dispatch(
+        sessionsSlice({
+          obj: { username: usernameState },
+          endpoint: 'register',
+        }),
+      );
     }
   };
 
@@ -34,67 +40,73 @@ const Register = () => {
   };
 
   useEffect(() => {
-    if (userData.logged_in === false) {
+    if (userData.loggedIn === false) {
       if (clickedState) {
         setExistState(true);
         setValidDisplayState(false);
       }
     }
-    if (userData.logged_in === true) {
+    if (userData.loggedIn === true) {
       setExistState(false);
       localStorage.setItem('logged_in', true);
       localStorage.setItem('user', userData.user.username);
     }
     if (localStorage.getItem('logged_in') === 'true') {
       if (!userData) {
-        dispatch(sessionsSlice({ obj: { username: usernameState }, endpoint: 'login' }));
+        dispatch(
+          sessionsSlice({ obj: { username: usernameState }, endpoint: 'login' }),
+        );
       }
       navigate('/');
     }
-  }, [userData.message, userData.loggedIn, navigate, dispatch, userData, clickedState]);
+  }, [
+    userData.message,
+    userData.loggedIn,
+    navigate,
+    dispatch,
+    userData,
+    clickedState,
+  ]);
 
   return (
     <div className="container">
-      <h5 className="card-title">Register</h5>
-      <form action="" className="user-form flex">
-        <input
-          type="input"
-          name="username"
-          placeholder="Username"
-          id="username"
-          onChange={setUserName}
-        />
-        <div
-          className="backend-error"
-          style={{
-            display: existState ? 'inherit' : 'none',
-          }}
-        >
-          <p>{userData.message}</p>
-        </div>
-        <div
-          className="error"
-          style={{
-            display: validDisplayState ? 'inherit' : 'none',
-          }}
-        >
-          <p>{validMsgState}</p>
-        </div>
-        <button
-          type="button"
-          className="btn btn-primary"
-          onClick={validate}
-        >
-          Register
-        </button>
-        <Link to="/user/login">
-          <p
-            className="session-redirect"
+      <div className="backgrd-overlay">
+        <h2 className="card-title">Register</h2>
+        <form action="" className="user-form flex">
+          <input
+            type="input"
+            name="username"
+            placeholder="Username"
+            id="username"
+            onChange={setUserName}
+          />
+          <div
+            className="backend-error"
+            style={{
+              display: existState ? 'inherit' : 'none',
+            }}
           >
-            <em>Already a member? Log in...</em>
+            <p>{userData.message}</p>
+          </div>
+          <div
+            className="error"
+            style={{
+              display: validDisplayState ? 'inherit' : 'none',
+            }}
+          >
+            <p>{validMsgState}</p>
+          </div>
+          <button type="button" className="btn btn-primary" onClick={validate}>
+            Register
+          </button>
+          <p className="session-redirect">
+            <em>Already a member?</em>
+            <Link to="/user/login" className="login-link">
+              Log in
+            </Link>
           </p>
-        </Link>
-      </form>
+        </form>
+      </div>
     </div>
   );
 };
