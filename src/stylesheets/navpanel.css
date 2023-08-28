@@ -1,17 +1,18 @@
 .nav-panel-main-container {
-	background-color: #fff;
-	height: 100vh;
-	border-right: 1px solid #eee;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	gap: 150px;
+  background-color: #fff;
+  height: 100vh;
+  border-right: 1px solid #eee;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 150px;
   padding: 20px 0;
 }
 
 .nav-links-container {
   list-style-type: none;
   padding: 0 0 0 20px;
+
   /* border: 1px solid #eee; */
   width: 100%;
   display: flex;
@@ -42,4 +43,3 @@
 .nav-link:focus {
   background-color: #97bf0f;
 }
-
