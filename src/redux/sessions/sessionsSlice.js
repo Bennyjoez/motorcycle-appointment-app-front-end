@@ -39,11 +39,12 @@ const SessionsSlice = createSlice({
         state.createmsg = 'loading';
       })
       .addCase(postRegister.fulfilled, (state, action) => {
-        const { loggedIn, responseData } = action.payload;
+        const responseData = action.payload;
+        console.log(responseData);
         return {
           ...state,
           user: responseData,
-          loggedIn,
+          loggedIn: true,
           createmsg: 'success',
         };
       })

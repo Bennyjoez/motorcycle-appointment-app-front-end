@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import sessionsSlice from '../../redux/sessions/sessionsSlice';
+import { postRegister } from '../../redux/sessions/sessionsSlice';
 import '../../stylesheets/register.css';
 
 const Register = () => {
@@ -27,7 +27,7 @@ const Register = () => {
       setExistState(false);
     } else if (usernameState.length >= 6) {
       dispatch(
-        sessionsSlice({
+        postRegister({
           obj: { username: usernameState },
           endpoint: 'register',
         }),
@@ -54,10 +54,10 @@ const Register = () => {
     if (localStorage.getItem('logged_in') === 'true') {
       if (!userData) {
         dispatch(
-          sessionsSlice({ obj: { username: usernameState }, endpoint: 'login' }),
+          postRegister({ obj: { username: usernameState }, endpoint: 'login' }),
         );
       }
-      navigate('/');
+      navigate('/motorcycles');
     }
   }, [
     userData.message,
@@ -101,7 +101,7 @@ const Register = () => {
           </button>
           <p className="session-redirect">
             <em>Already a member?</em>
-            <Link to="/user/login" className="login-link">
+            <Link to="/login" className="login-link">
               Log in
             </Link>
           </p>

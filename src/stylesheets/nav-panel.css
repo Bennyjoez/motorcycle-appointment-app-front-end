@@ -1,0 +1,31 @@
+.nav-panel-main-container {
+  padding: 1em 0 1em 1em;
+  display: flex;
+  flex-direction: column;
+  gap: 5em;
+}
+
+.nav-links-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  list-style: none;
+  gap: 0.1em;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-link-container {
+  height: 2em;
+}
+
+a#link {
+  width: 100%;
+}
+
+.nav-link-container > a {
+  text-decoration: none;
+  background-color: #97bf0f;
+  padding: 0.2em 0.5em;
+  width: 100%;
+}
