@@ -31,7 +31,7 @@ const Login = () => {
 
   useEffect(() => {
     if (loggedUser.loggedIn === true) {
-      navigate('/motocycles');
+      navigate('/motorcycles');
     }
   }, [
     loggedUser.loggedIn,
