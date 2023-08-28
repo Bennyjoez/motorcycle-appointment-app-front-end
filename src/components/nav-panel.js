@@ -6,23 +6,13 @@ import '../stylesheets/navpanel.css';
 const NavPanel = () => (
   <nav className="nav-panel-main-container">
     <div className="logo-container">logo</div>
-    <ul className="nav-links-container">
-      <li className="nav-link">
-        <Link to="/motorcycles">Motorcyles</Link>
-      </li>
-      <li className="nav-link">
-        <Link to="/reserve">Reserve</Link>
-      </li>
-      <li className="nav-link">
-        <Link to="/reservations">Reservations</Link>
-      </li>
-      <li className="nav-link">
-        <Link to="/add-motorcycle">Add Motorcycle</Link>
-      </li>
-      <li className="nav-link">
-        <Link to="/delete">Delete</Link>
-      </li>
-    </ul>
+    <div className="nav-links-container">
+      <Link to="/motorcycles" className="nav-link">Motorcyles</Link>
+      <Link to="/reserve" className="nav-link">Reserve</Link>
+      <Link to="/reservations" className="nav-link">Reservations</Link>
+      <Link to="/add-motorcycle" className="nav-link">Add Motorcycle</Link>
+      <Link to="/delete" className="nav-link">Delete</Link>
+    </div>
   </nav>
 );
 
