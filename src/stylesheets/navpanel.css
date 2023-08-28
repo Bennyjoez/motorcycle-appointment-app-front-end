@@ -1,6 +1,7 @@
 .nav-panel-main-container {
   background-color: #fff;
   height: 100vh;
+  width: 150px;
   border-right: 1px solid #eee;
   display: flex;
   flex-direction: column;
@@ -12,8 +13,6 @@
 .nav-links-container {
   list-style-type: none;
   padding: 0 0 0 20px;
-
-  /* border: 1px solid #eee; */
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -21,25 +20,23 @@
   gap: 20px;
 }
 
-.nav-link {
+a {
   width: 100%;
   padding: 12px 8px;
-}
-
-.nav-link a {
   text-decoration: none;
   font-weight: bold;
   font-size: 14px;
   color: #000;
   border-bottom: 2px solid transparent;
   transition: border-color 0.5s ease;
+  cursor: pointer;
 }
 
-.nav-link a:hover {
+a:hover {
   color: #fff;
 }
 
-.nav-link:hover,
-.nav-link:focus {
+a:hover,
+a:focus {
   background-color: #97bf0f;
 }
