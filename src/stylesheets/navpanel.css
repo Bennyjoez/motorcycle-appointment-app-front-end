@@ -20,7 +20,7 @@
   gap: 20px;
 }
 
-a {
+a.nav-link {
   width: 100%;
   padding: 12px 8px;
   text-decoration: none;
@@ -32,11 +32,12 @@ a {
   cursor: pointer;
 }
 
-a:hover {
+a.nav-link:hover {
   color: #fff;
 }
 
-a:hover,
-a:focus {
+a.nav-link:hover,
+a.nav-link:focus,
+a.nav-link:active {
   background-color: #97bf0f;
 }

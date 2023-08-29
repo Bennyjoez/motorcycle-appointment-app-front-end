@@ -1,16 +1,39 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 import NavPanel from '../nav-panel';
 import '../../stylesheets/motorcycles.css';
 import MotorCard from '../motor-card';
-import motorImg from '../../motor_img.png';
+import { getMotorcycles } from '../../redux/motorcycles/motorcycleSlice';
 
 const Motorcycles = () => {
+  const dispatch = useDispatch();
+  const motorcycles = useSelector((state) => state.motorcycles);
+
+  useEffect(() => {
+    dispatch(getMotorcycles());
+  }, []);
+
   return (
-    <div className='motocycles-main-container'>
+    <div className="motorcycles-main-container">
       <section className="nav-container">
         <NavPanel />
       </section>
-      <section className="page-body">This is motorcycles page</section>
+      <section className="page-body">
+        <div className="title-container">
+          <h2>Latest Model</h2>
+          <p>please select your choice</p>
+        </div>
+        <div className="motorcycles-container">
+          { motorcycles.message === 'loading' ? (<div className="loading-msg"> Loading...</div>)
+
+            : motorcycles.motorcycles.map((motor) => (
+              <Link to="/motorcycles/details" className="card-link" key={motor.id}>
+                <MotorCard name={motor.name} imgUrl={motor.image} />
+              </Link>
+            ))}
+        </div>
+      </section>
     </div>
   );
 };
