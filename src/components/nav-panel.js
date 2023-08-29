@@ -6,6 +6,7 @@ import '../stylesheets/navpanel.css';
 const NavPanel = () => (
   <nav className="nav-panel-main-container">
     <div className="logo-container">logo</div>
+
     <div className="nav-links-container">
       <Link to="/motorcycles" className="nav-link">Motorcyles</Link>
       <Link to="/reserve" className="nav-link">Reserve</Link>
