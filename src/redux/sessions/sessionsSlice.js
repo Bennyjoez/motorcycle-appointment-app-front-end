@@ -8,8 +8,6 @@ export const postRegister = createAsyncThunk('postRegister', async (data) => {
     },
     body: JSON.stringify(data.obj),
   });
-  // console.log(response.data);
-  // return response.data;
 
   const responseData = await response.json();
   if (response.status < 200 || response.status >= 300) {
