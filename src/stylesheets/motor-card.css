@@ -1,0 +1,12 @@
+.card-main-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0.5em;
+}
+
+.motor-name {
+  font-size: 1.2em;
+  font-weight: 600;
+}

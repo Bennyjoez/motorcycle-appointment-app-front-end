@@ -40,7 +40,6 @@ const SessionsSlice = createSlice({
       })
       .addCase(postRegister.fulfilled, (state, action) => {
         const responseData = action.payload;
-        console.log(responseData);
         return {
           ...state,
           user: responseData,

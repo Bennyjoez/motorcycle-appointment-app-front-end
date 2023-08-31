@@ -1,11 +1,11 @@
 import React from 'react';
-import NavPanel from '../nav-panel';
 import '../../stylesheets/add-motorcycle.css';
+import Navbar from '../navbar';
 
 const AddMotorcycle = () => (
   <div className="add-motor-main-container">
     <section className="add-motor-nav-container">
-      <NavPanel />
+      <Navbar />
     </section>
     <section className="add-motor-body">This is the Add motorcycle page</section>
   </div>
