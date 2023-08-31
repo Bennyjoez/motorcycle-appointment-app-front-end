@@ -5,8 +5,8 @@ import Navbar from '../navbar';
 const Reserve = () => (
   <div className="reserve-main-container">
     <section className="reserve-nav-container">
-        <Navbar />
-      </section>
+      <Navbar />
+    </section>
     <section className="reserve-body">This is the Reserve page</section>
   </div>
 );
