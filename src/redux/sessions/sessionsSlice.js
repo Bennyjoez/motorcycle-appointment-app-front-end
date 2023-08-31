@@ -8,6 +8,8 @@ export const postRegister = createAsyncThunk('postRegister', async (data) => {
     },
     body: JSON.stringify(data.obj),
   });
+  // console.log(response.data);
+  // return response.data;
 
   const responseData = await response.json();
   if (response.status < 200 || response.status >= 300) {
@@ -41,12 +43,13 @@ const SessionsSlice = createSlice({
       .addCase(postRegister.fulfilled, (state, action) => {
         const responseData = action.payload;
         console.log(responseData);
-        return {
-          ...state,
-          user: responseData,
-          loggedIn: true,
-          createmsg: 'success',
-        };
+
+        // Store user data including the ID in local storage
+        localStorage.setItem('user', JSON.stringify(responseData));
+
+        state.user = responseData;
+        state.loggedIn = true;
+        state.createmsg = 'success';
       })
       .addCase(postRegister.rejected, (state, action) => ({
         ...state,
