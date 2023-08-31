@@ -17,28 +17,6 @@ export const postReservation = createAsyncThunk('postReservation', async (data) 
   // return responseData;
 });
 
-export const getReservations = createAsyncThunk('getReservations', async () => {
-  const userId = JSON.parse(localStorage.getItem('user')).id;
-  const RESERVATION_URL = `http://localhost:3000/api/users/${userId}/reservations`;
-  const response = await axios.get(RESERVATION_URL, {
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  });
-  // console.log(response.data);
-  // return response.data;
-  const { data } = response;
-  const reservation = data.map((reservation) => ({
-    id: reservation.id,
-    motorcycle_id: reservation.motorcycle_id,
-    user_id: reservation.user_id,
-    date: reservation.date,
-    city: reservation.city,
-    status: reservation.status,
-  }));
-  return reservation;
-});
-
 const initialState = {
   // reservationList: [],
   reservation: [],
@@ -74,18 +52,6 @@ const reservationSlice = createSlice({
         ...state,
         error: action.payload,
         creationMsg: action.error.message,
-      }))
-      .addCase(getReservations.pending, (state) => {
-        state.loading = true;
-      })
-      .addCase(getReservations.fulfilled, (state, action) => {
-        state.reservation = action.payload;
-        state.loading = false;
-        // state.reservationList = action.payload;
-      })
-      .addCase(getReservations.rejected, (state, action) => ({
-        ...state,
-        error: action.payload,
       }));
   },
 });
