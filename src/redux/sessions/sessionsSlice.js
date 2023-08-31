@@ -1,10 +1,10 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
-export const postRegister = createAsyncThunk("postRegister", async (data) => {
+export const postRegister = createAsyncThunk('postRegister', async (data) => {
   const response = await fetch(`http://localhost:3000/api/${data.endpoint}`, {
-    method: "POST",
+    method: 'POST',
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify(data.obj),
   });
@@ -19,13 +19,13 @@ export const postRegister = createAsyncThunk("postRegister", async (data) => {
 const initialState = {
   user: {},
   reservation: [],
-  message: "",
+  message: '',
   loggedIn: false,
-  createmsg: "",
+  createmsg: '',
 };
 
 const SessionsSlice = createSlice({
-  name: "user",
+  name: 'user',
   initialState,
   reducers: {
     logOut: () => initialState,
@@ -36,23 +36,23 @@ const SessionsSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(postRegister.pending, (state) => {
-        state.createmsg = "loading";
+        state.createmsg = 'loading';
       })
       .addCase(postRegister.fulfilled, (state, action) => {
         const responseData = action.payload;
         console.log(responseData);
 
         // Store user data including the ID in local storage
-        localStorage.setItem("user", JSON.stringify(responseData));
+        localStorage.setItem('user', JSON.stringify(responseData));
 
         state.user = responseData;
         state.loggedIn = true;
-        state.createmsg = "success";
+        state.createmsg = 'success';
         return {
           ...state,
           user: responseData,
           loggedIn: true,
-          createmsg: "success",
+          createmsg: 'success',
         };
       })
       .addCase(postRegister.rejected, (state, action) => ({

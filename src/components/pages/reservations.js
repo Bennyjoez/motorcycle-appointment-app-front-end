@@ -1,6 +1,6 @@
-import React from "react";
-import "../../stylesheets/reservations.css";
-import Navbar from "../navbar";
+import React from 'react';
+import '../../stylesheets/reservations.css';
+import Navbar from '../navbar';
 
 const Reservations = () => (
   <div className="reservations-main-container">
