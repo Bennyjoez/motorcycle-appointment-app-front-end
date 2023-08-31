@@ -48,12 +48,6 @@ const SessionsSlice = createSlice({
         state.user = responseData;
         state.loggedIn = true;
         state.createmsg = 'success';
-        return {
-          ...state,
-          user: responseData,
-          loggedIn: true,
-          createmsg: 'success',
-        };
       })
       .addCase(postRegister.rejected, (state, action) => ({
         ...state,
