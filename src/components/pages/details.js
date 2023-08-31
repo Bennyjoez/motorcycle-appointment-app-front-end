@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import NavPanel from '../nav-panel';
 import '../../stylesheets/details.css';
+import Navbar from '../navbar';
 
 const Details = () => {
   const [menuToggleState, setMenuToggleState] = useState('hide');
@@ -14,24 +15,8 @@ const Details = () => {
   };
   return (
     <div className="details-main-container">
-      <nav className="details-mobile-nav">
-        <button
-          type="button"
-          onClick={handleMenuToggle}
-          className="details-menu-toggle"
-        >
-          &#9776;
-        </button>
-      </nav>
-      <section className={`details-nav-container ${menuToggleState}`}>
-        <button
-          type="button"
-          onClick={handleMenuToggle}
-          className={`close-btn ${menuToggleState}`}
-        >
-          &#10005;
-        </button>
-        <NavPanel />
+      <section className="details-nav-container">
+        <Navbar />
       </section>
       <section className="details-body">This is the Details</section>
     </div>
