@@ -1,11 +1,11 @@
 import React from 'react';
-import NavPanel from '../nav-panel';
 import '../../stylesheets/reserve.css';
+import Navbar from '../navbar';
 
 const Reserve = () => (
   <div className="reserve-main-container">
     <section className="reserve-nav-container">
-      <NavPanel />
+      <Navbar />
     </section>
     <section className="reserve-body">This is the Reserve page</section>
   </div>
