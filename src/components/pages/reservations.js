@@ -8,7 +8,7 @@ import '../../stylesheets/reservations.css';
 const Reservations = () => {
   const isLoggedIn = JSON.parse(window.localStorage.getItem('logged_in'));
   const user = JSON.parse(window.localStorage.getItem('user'));
-  const { reservationsList } = useSelector((state) => state.reservations);
+  const { reservation } = useSelector((state) => state.reservations);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -28,7 +28,7 @@ const Reservations = () => {
     return dateA - dateB;
   };
 
-  const userReservations = reservationsList.filter(
+  const userReservations = reservation.filter(
     (reservation) => reservation.user_id === user.id,
   );
   const sortedReservations = userReservations.slice().sort(sortReservations);
