@@ -37,7 +37,18 @@ a.nav-link:hover {
 }
 
 a.nav-link:hover,
-a.nav-link:focus,
-a.nav-link:active {
+a.nav-link:focus {
   background-color: #97bf0f;
+}
+
+@media (min-width: 768px) {
+  /* Desktop-specific styles */
+  .nav-links-container {
+    padding: 0 0 0 0.5em;
+  }
+
+  a.nav-link {
+    padding: 8px 5px;
+    font-size: 0.8rem;
+  }
 }
