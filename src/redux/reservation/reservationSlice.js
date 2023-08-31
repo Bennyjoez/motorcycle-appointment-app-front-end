@@ -65,7 +65,6 @@ const reservationSlice = createSlice({
         state.loading = true;
       })
       .addCase(postReservation.fulfilled, (state, action) => {
-        // const responseData = action.payload;
         console.log(action.payload);
         state.reservation.push(action.payload);
         state.loading = false;
