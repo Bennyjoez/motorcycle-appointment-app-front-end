@@ -1,5 +1,8 @@
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { postRegister } from './redux/sessions/sessionsSlice';
 import Register from './components/sessions/register';
 import Login from './components/sessions/login';
 import Motorcycles from './components/pages/motorcycles';
@@ -10,6 +13,13 @@ import Reserve from './components/pages/reserve';
 import Details from './components/pages/details';
 
 function App() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if (localStorage.getItem('user')) {
+      const username = localStorage.getItem('user');
+      dispatch(postRegister({ username }, 'login'));
+    }
+  }, [dispatch]);
   return (
     <Router>
       <Routes>

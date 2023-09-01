@@ -49,7 +49,7 @@ const Register = () => {
     if (userData.loggedIn === true) {
       setExistState(false);
       localStorage.setItem('logged_in', true);
-      localStorage.setItem('user', userData.user.username);
+      localStorage.setItem('user', userData.user.id);
     }
     if (localStorage.getItem('logged_in') === 'true') {
       if (!userData) {
