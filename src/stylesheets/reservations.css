@@ -58,7 +58,6 @@ th {
 
 @media (max-width: 768px) {
   .reservations-main-container {
-    border: 1px solid #333;
     width: 100%;
   }
 
