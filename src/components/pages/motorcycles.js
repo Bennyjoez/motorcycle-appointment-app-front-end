@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import '../../stylesheets/motorcycles.css';
@@ -30,11 +30,15 @@ const Motorcycles = () => {
           ) : (
             motorcycles.motorcycles.map((motor) => (
               <Link
-                to="/motorcycles/details"
+                to={`/motorcycles/${motor.id}/details`}
                 className="card-link"
                 key={motor.id}
               >
-                <MotorCard name={motor.name} imgUrl={motor.image} />
+                <MotorCard
+                  name={motor.name}
+                  imgUrl={motor.image}
+                  description={motor.description}
+                />
               </Link>
             ))
           )}
