@@ -3,9 +3,10 @@ import '../../stylesheets/login.css';
 import { Link, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { postRegister } from '../../redux/sessions/sessionsSlice';
+import { getMotorcycles } from '../../redux/motorcycles/motorcycleSlice';
 
 const Login = () => {
-  const loggedUser = useSelector((state) => state.sessions);
+  const loggedUser = useSelector((state) => state.state.sessions);
   const [usernameState, setUsernameState] = useState('');
   const [validMsgState, setValidMsgState] = useState('');
   const [validMsgDisplayState, setValidMsgDisplayState] = useState(false);
@@ -31,11 +32,13 @@ const Login = () => {
 
   useEffect(() => {
     if (loggedUser.loggedIn === true) {
+      dispatch(getMotorcycles());
       navigate('/motorcycles');
     }
   }, [
     loggedUser.loggedIn,
     loggedUser.message,
+    dispatch,
   ]);
 
   return (
