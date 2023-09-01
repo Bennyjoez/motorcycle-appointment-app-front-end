@@ -1,5 +1,6 @@
 .reservations-main-container {
   display: flex;
+  width: 100%;
 }
 
 table {
@@ -21,10 +22,6 @@ td {
 
 th {
   font-weight: 700;
-}
-
-.reservations-main-container {
-  width: 100%;
 }
 
 .reservations-container {
