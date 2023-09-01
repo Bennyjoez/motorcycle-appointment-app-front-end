@@ -40,7 +40,6 @@ const SessionsSlice = createSlice({
       })
       .addCase(postRegister.fulfilled, (state, action) => {
         const responseData = action.payload;
-        console.log(responseData);
 
         // Store user data including the ID in local storage
         localStorage.setItem('user', JSON.stringify(responseData));

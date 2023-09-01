@@ -11,8 +11,6 @@ import Navbar from '../navbar';
 const Reservations = () => {
   const { motorcycles } = useSelector((state) => state.motorcycles);
   const createmsg = useSelector((state) => state.sessions);
-  const reservationData = useSelector((state) => state.reservations);
-  console.log(reservationData);
   const user = JSON.parse(window.localStorage.getItem('user'));
   const isLoggedIn = JSON.parse(window.localStorage.getItem('logged_in'));
 

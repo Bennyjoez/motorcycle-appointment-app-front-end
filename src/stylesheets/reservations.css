@@ -1,6 +1,7 @@
 .reservations-main-container {
   display: flex;
   width: 100%;
+  flex-direction: column;
 }
 
 table {
@@ -40,6 +41,7 @@ th {
 
 .reservations-list-container h1 {
   font-weight: 900;
+  font-family: "Poppins", sans-serif;
 }
 
 .reservations-list p {
@@ -51,12 +53,39 @@ th {
   font-weight: 900;
   text-align: center;
   margin-bottom: 20px;
+  font-family: "Poppins", sans-serif;
 }
 
-@media (min-width: 768px) {
+@media (max-width: 768px) {
+  .reservations-main-container {
+    border: 1px solid #333;
+    width: 100%;
+  }
+
   .reservations-list-container {
     padding: 30px;
     margin: auto;
     max-width: 100%;
+  }
+
+  .reservations-list-container h1 {
+    font-size: 18px;
+  }
+
+  .reservations-list p {
+    padding: 10px;
+    background-color: white;
+    color: #96bf0fe1;
+    border-radius: 100px;
+    border: 1px solid #96bf0fe1;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 20px;
+    font-family: "Poppins", sans-serif;
+    font-size: 12px;
+  }
+
+  td {
+    font-size: 12px;
   }
 }
