@@ -18,11 +18,12 @@
 .details-nav-container {
   display: flex;
   flex-direction: column;
-  position: absolute;
+  position: fixed;
   background-color: #fff;
   left: 0;
   top: 0;
   margin: 0;
+  width:100%;
 }
 
 .close-btn {
@@ -77,7 +78,7 @@
   }
 
   .details-body {
-    display: block;
+    display: flex;
     position: static;
     grid-row: 1/2;
     grid-column: 2/3;
