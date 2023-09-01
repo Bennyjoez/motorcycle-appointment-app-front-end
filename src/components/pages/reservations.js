@@ -2,24 +2,29 @@ import { useSelector, useDispatch } from 'react-redux';
 import React, { useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { getReservations } from '../../redux/reservation/reservationSlice';
+import { getMotorcycles } from '../../redux/motorcycles/motorcycleSlice';
 import NavPanel from '../nav-panel';
 import '../../stylesheets/reservations.css';
 
 const Reservations = () => {
   const isLoggedIn = JSON.parse(window.localStorage.getItem('logged_in'));
   const user = JSON.parse(window.localStorage.getItem('user'));
+  const motorcycles = useSelector((state) => state.motorcycles.motorcycles);
   const { reservation } = useSelector((state) => state.reservations);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   useEffect(() => {
+    if (motorcycles.length === 0) {
+      dispatch(getMotorcycles());
+    }
     dispatch(getReservations());
     if (!isLoggedIn) {
       setTimeout(() => {
         navigate('/user/login');
       }, 2000);
     }
-  }, [dispatch, isLoggedIn, navigate]);
+  }, [dispatch, isLoggedIn, navigate, motorcycles]);
 
   const sortReservations = (a, b) => {
     const dateA = new Date(a.date);
@@ -69,7 +74,18 @@ const Reservations = () => {
                   <tbody>
                     {sortedReservations.map((reservation) => (
                       <tr key={reservation.id}>
-                        <td>{reservation.motorcycle}</td>
+                        <td>
+                          {(() => {
+                            const foundMotorcycle = motorcycles.find(
+                              (motorcycle) => motorcycle.id === reservation.motorcycle_id,
+                            );
+                            let motorcycleName = '';
+                            if (foundMotorcycle) {
+                              motorcycleName = foundMotorcycle.name;
+                            }
+                            return motorcycleName;
+                          })()}
+                        </td>
                         <td>{reservation.city}</td>
                         <td>{reservation.date}</td>
                         <td>{reservation.status}</td>
