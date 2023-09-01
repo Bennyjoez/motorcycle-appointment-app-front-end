@@ -14,15 +14,12 @@
   border-bottom: dashed 1px #bbb;
 }
 
-.icon-container{
+.icon-container {
   display: flex;
-  gap:10px;
-  margin:10px 0;
-  
+  gap: 10px;
+  margin: 10px 0;
 }
 
-.icon-container a{
-  color:#aaa
+.icon-container a {
+  color: #aaa;
 }
-
-

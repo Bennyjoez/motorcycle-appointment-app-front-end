@@ -1,30 +1,30 @@
 import React, { useEffect } from 'react';
 import '../../stylesheets/details.css';
-import Navbar from '../navbar';
 import { Link, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { GrCaretPrevious } from 'react-icons/gr';
+import Navbar from '../navbar';
 import { getMotorcycles } from '../../redux/motorcycles/motorcycleSlice';
 
 const Details = () => {
   const motorId = parseInt(useParams().id, 10);
-  const dispatch = useDispatch().dispatch
+  const { dispatch } = useDispatch();
   const { motorcycles } = useSelector((state) => state.motorcycles);
 
   const filtered = motorcycles.filter((cycle) => cycle.id === motorId);
 
-  useEffect(()=>{
-    if(motorcycles.length===0){
-      dispatch(getMotorcycles)
+  useEffect(() => {
+    if (motorcycles.length === 0) {
+      dispatch(getMotorcycles);
     }
-  },[])
+  }, []);
   return (
     <div className="details-main-container">
       <section className="details-nav-container">
         <Navbar />
       </section>
       <section className="details-body">
-        <Link to={'/motorcycles'} className="details-back-btn">
+        <Link to="/motorcycles" className="details-back-btn">
           <GrCaretPrevious />
         </Link>
         <div className="details-img-container">

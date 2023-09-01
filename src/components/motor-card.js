@@ -15,9 +15,9 @@ const MotorCard = ({ name, imgUrl, description }) => (
     />
     <div className="motor-name">{name}</div>
     <p>{description}</p>
-    <div className='icon-container'>
+    <div className="icon-container">
       <a href="#">
-        <FaFacebookF  />
+        <FaFacebookF />
       </a>
       <a href="#">
         <FaTwitter />
