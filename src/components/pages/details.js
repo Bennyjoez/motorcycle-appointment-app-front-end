@@ -40,7 +40,10 @@ const Details = () => {
               </li>
             </ul>
             <Link
-              to={{ pathname: '/reserve', state: { Id: motorId } }}
+             to={{
+              pathname: '/reserve', // Replace with your target component's route
+              state: { Id: motorId }, // Pass data in the state object
+            }}
               className="reserve-btn"
             >
               Reserve
