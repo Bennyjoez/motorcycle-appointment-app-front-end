@@ -9,7 +9,7 @@ import '../../stylesheets/reserve.css';
 import Navbar from '../navbar';
 
 const Reservations = () => {
-  // const { motorcycles } = useSelector((state) => state.motorcycles);
+  const { motorcycles } = useSelector((state) => state.motorcycles);
   const createmsg = useSelector((state) => state.sessions);
   const reservationData = useSelector((state) => state.reservations);
   console.log(reservationData);
@@ -39,16 +39,13 @@ const Reservations = () => {
     if (createmsg === 'success') {
       setCreated(true);
       setErrorMessage('');
+      setErrorMessage('');
       dispatch(createMsgAction());
       setTimeout(() => {
         navigate('/reservations');
       }, 2500);
-    } else {
-      setErrorMessage(
-        "Oops! Reservation couldn't be created. Can't reserve the same motorcycle on the same day",
-      );
     }
-    if (createmsg === "Reservation couldn't be created.") {
+    if (createmsg === '') {
       setErrorMessage(
         "Oops! Reservation couldn't be created. Can't reserve the same motorcycle on the same day.",
       );
@@ -159,16 +156,14 @@ const Reservations = () => {
             onChange={(e) => setMotorcycleIdState(e.target.value)}
           >
             <option value="">Select a motorcycle</option>
-            <option value="1">Honda</option>
-            <option value="2">Yamaha</option>
-            <option value="3">Suzuki</option>
-            <option value="4">Kawasaki</option>
-            <option value="5">BMW</option>
-            <option value="6">Ducati</option>
-            <option value="7">Triumph</option>
-            <option value="8">KTM</option>
-            <option value="9">Harley-Davidson</option>
-            <option value="10">Royal Enfield</option>
+            {motorcycles.map((motorcycle) => (
+              <option
+                key={motorcycle.id + motorcycle.name}
+                value={motorcycle.id}
+              >
+                {motorcycle.name}
+              </option>
+            ))}
           </select>
 
           <select
