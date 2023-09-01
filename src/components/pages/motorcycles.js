@@ -1,18 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import '../../stylesheets/motorcycles.css';
 import MotorCard from '../motor-card';
-import { getMotorcycles } from '../../redux/motorcycles/motorcycleSlice';
 import Navbar from '../navbar';
 
 const Motorcycles = () => {
-  const dispatch = useDispatch();
-  const motorcycles = useSelector((state) => state.motorcycles);
-
-  useEffect(() => {
-    dispatch(getMotorcycles());
-  }, []);
+  const motorcycles = useSelector((state) => state.state.motorcycles);
 
   return (
     <div className="motorcycles-main-container">
