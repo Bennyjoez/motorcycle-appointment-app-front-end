@@ -16,13 +16,13 @@ const MotorCard = ({ name, imgUrl, description }) => (
     <div className="motor-name">{name}</div>
     <p>{description}</p>
     <div className="icon-container">
-      <a href="#">
+      <a href="fb.com">
         <FaFacebookF />
       </a>
-      <a href="#">
+      <a href="twitter.com">
         <FaTwitter />
       </a>
-      <a href="#">
+      <a href="instagram.com">
         <ImInstagram />
       </a>
     </div>
@@ -32,6 +32,7 @@ const MotorCard = ({ name, imgUrl, description }) => (
 MotorCard.propTypes = {
   imgUrl: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
 };
 
 export default MotorCard;
