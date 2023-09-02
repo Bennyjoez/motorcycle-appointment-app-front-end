@@ -1,14 +1,22 @@
-import { configureStore } from '@reduxjs/toolkit';
-import sessionsReducer from './sessions/sessionsSlice';
-import reservationReducer from './reservation/reservationSlice';
-import motorcycleReducer from './motorcycles/motorcycleSlice';
+import { configureStore } from "@reduxjs/toolkit";
+import { persistStore, persistReducer } from "redux-persist";
+import storageSession from "redux-persist/lib/storage/session";
+
+import rootReducer from "./rootReducer";
+
+const persistConfig = {
+  key: "motorcycleApp",
+  storage: storageSession,
+};
+
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 const store = configureStore({
   reducer: {
-    sessions: sessionsReducer,
-    reservations: reservationReducer,
-    motorcycles: motorcycleReducer,
+    state: persistedReducer,
   },
 });
 
-export default store;
+const persistor = persistStore(store);
+
+export { store, persistor };
