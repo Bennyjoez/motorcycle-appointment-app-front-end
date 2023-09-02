@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { getReservations } from '../../redux/reservation/reservationSlice';
 import { getMotorcycles } from '../../redux/motorcycles/motorcycleSlice';
-import NavPanel from '../nav-panel';
+import Navbar from '../navbar';
 import '../../stylesheets/reservations.css';
 
 const Reservations = () => {
@@ -40,7 +40,7 @@ const Reservations = () => {
 
   return (
     <div className="reservations-main-container">
-      <NavPanel />
+      <Navbar />
       <div className="reservations-container">
         {isLoggedIn ? (
           <div className="reservations-list-container">

@@ -6,7 +6,6 @@ export const getMotorcycles = createAsyncThunk('motorcycles', async () => {
     headers: {
       'Content-Type': 'application/json',
     },
-
   });
 
   const responseData = await response.json();
@@ -15,6 +14,25 @@ export const getMotorcycles = createAsyncThunk('motorcycles', async () => {
   }
   return responseData;
 });
+
+export const postMotorcycles = createAsyncThunk(
+  'postMotorcycles',
+  async (data) => {
+    const response = await fetch('http://localhost:3000/api/motorcycles', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
+
+    const responseData = await response.json();
+    if (response.status < 200 || response.status >= 300) {
+      throw new Error(responseData.message);
+    }
+    return responseData;
+  },
+);
 
 const initialState = {
   user: {},
@@ -26,9 +44,7 @@ const initialState = {
 const MotorcycleSlice = createSlice({
   name: 'motorcycles',
   initialState,
-  reducers: {
-
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(getMotorcycles.pending, (state) => {
@@ -43,6 +59,19 @@ const MotorcycleSlice = createSlice({
         };
       })
       .addCase(getMotorcycles.rejected, (state, action) => ({
+        ...state,
+        error: action.payload,
+        message: action.error.message,
+      }))
+      .addCase(postMotorcycles.fulfilled, (state, action) => {
+        const responseData = action.payload;
+        return {
+          ...state,
+          motorcycles: [...state.motorcycles, responseData],
+          message: 'post success',
+        };
+      })
+      .addCase(postMotorcycles.rejected, (state, action) => ({
         ...state,
         error: action.payload,
         message: action.error.message,

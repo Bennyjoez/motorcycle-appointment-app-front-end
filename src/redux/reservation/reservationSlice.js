@@ -1,22 +1,13 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-// const userId = JSON.parse(localStorage.getItem('userId'));
-// const RESERVATION_URL = `http://localhost:3000/api/users/${userId}/reservations`;
-
 export const postReservation = createAsyncThunk(
   'postReservation',
   async (data) => {
     const userId = JSON.parse(localStorage.getItem('user')).id;
     const RESERVATION_URL = `http://localhost:3000/api/users/${userId}/reservations`;
     const response = await axios.post(RESERVATION_URL, data);
-    // console.log('This is your response!');
     return response.data;
-    // const responseData = await response.json();
-    // if (response.status < 200 || response.status >= 300) {
-    //   throw new Error('Failed to add reservation');
-    // }
-    // return responseData;
   },
 );
 
@@ -28,8 +19,6 @@ export const getReservations = createAsyncThunk('getReservations', async () => {
       'Content-Type': 'application/json',
     },
   });
-  // console.log(response.data);
-  // return response.data;
   const { data } = response;
   const reservation = data.map((reservation) => ({
     id: reservation.id,
@@ -43,7 +32,6 @@ export const getReservations = createAsyncThunk('getReservations', async () => {
 });
 
 const initialState = {
-  // reservationList: [],
   reservation: [],
   creationMsg: '',
   loading: false,
@@ -69,7 +57,6 @@ const reservationSlice = createSlice({
         state.loading = true;
       })
       .addCase(postReservation.fulfilled, (state, action) => {
-        console.log(action.payload);
         state.reservation.push(action.payload);
         state.loading = false;
         state.creationMsg = 'success';
@@ -85,7 +72,6 @@ const reservationSlice = createSlice({
       .addCase(getReservations.fulfilled, (state, action) => {
         state.reservation = action.payload;
         state.loading = false;
-        // state.reservationList = action.payload;
       })
       .addCase(getReservations.rejected, (state, action) => ({
         ...state,
