@@ -1,54 +1,55 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
 
 export const postReservation = createAsyncThunk(
-  'postReservation',
+  "postReservation",
   async (data) => {
-    const userId = JSON.parse(localStorage.getItem('user')).id;
-    const RESERVATION_URL = `http://localhost:3000/api/users/${userId}/reservations`;
+    const RESERVATION_URL = `http://localhost:3000/api/users/${data.user_id}/reservations`;
     const response = await axios.post(RESERVATION_URL, data);
     return response.data;
-  },
+  }
 );
 
-export const getReservations = createAsyncThunk('getReservations', async () => {
-  const userId = JSON.parse(localStorage.getItem('user')).id;
-  const RESERVATION_URL = `http://localhost:3000/api/users/${userId}/reservations`;
-  const response = await axios.get(RESERVATION_URL, {
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  });
-  const { data } = response;
-  const reservation = data.map((reservation) => ({
-    id: reservation.id,
-    motorcycle_id: reservation.motorcycle_id,
-    user_id: reservation.user_id,
-    date: reservation.date,
-    city: reservation.city,
-    status: reservation.status,
-  }));
-  return reservation;
-});
+export const getReservations = createAsyncThunk(
+  "getReservations",
+  async (id) => {
+    const RESERVATION_URL = `http://localhost:3000/api/users/${id}/reservations`;
+    const response = await axios.get(RESERVATION_URL, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const { data } = response;
+    const reservation = data.map((reservation) => ({
+      id: reservation.id,
+      motorcycle_id: reservation.motorcycle_id,
+      user_id: reservation.user_id,
+      date: reservation.date,
+      city: reservation.city,
+      status: reservation.status,
+    }));
+    return reservation;
+  }
+);
 
 const initialState = {
   reservation: [],
-  creationMsg: '',
+  creationMsg: "",
   loading: false,
-  error: '',
+  error: "",
+  reservationsFetched: false,
 };
 
 const reservationSlice = createSlice({
-  name: 'reservation',
+  name: "reservation",
   initialState,
   reducers: {
     createMsgAction: (state, action) => {
       state.creationMsg = action.payload;
     },
-    setRemoveReservation: (state, action) => {
-      state.reservation = state.reservation.filter(
-        (reservation) => reservation.motorcycle_id !== action.payload,
-      );
+
+    markReservationsAsFetched: (state) => {
+      state.reservationsFetched = true;
     },
   },
   extraReducers: (builder) => {
@@ -59,7 +60,7 @@ const reservationSlice = createSlice({
       .addCase(postReservation.fulfilled, (state, action) => {
         state.reservation.push(action.payload);
         state.loading = false;
-        state.creationMsg = 'success';
+        state.creationMsg = "success";
       })
       .addCase(postReservation.rejected, (state, action) => ({
         ...state,
@@ -80,5 +81,6 @@ const reservationSlice = createSlice({
   },
 });
 
-export const { createMsgAction, setRemoveReservation } = reservationSlice.actions;
+export const { createMsgAction, markReservationsAsFetched } =
+  reservationSlice.actions;
 export default reservationSlice.reducer;
