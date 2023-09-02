@@ -20,6 +20,18 @@
   gap: 20px;
 }
 
+@media (min-width: 768px) {
+  .nav-links-container {
+    list-style-type: none;
+    padding: 0 0 0 20px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+}
+
 a.nav-link {
   width: 100%;
   padding: 12px 8px;
@@ -39,6 +51,15 @@ a.nav-link:hover {
 a.nav-link:hover,
 a.nav-link:focus {
   background-color: #97bf0f;
+}
+
+.logout-btn {
+  padding: 8px 20px;
+  border: none;
+  outline: none;
+  border-radius: 20px;
+  background-color: #97bf0f;
+  color: #fff;
 }
 
 @media (min-width: 768px) {
