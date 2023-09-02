@@ -1,7 +1,6 @@
 .reservations-main-container {
   display: flex;
   width: 100%;
-  flex-direction: column;
 }
 
 table {
@@ -59,6 +58,8 @@ th {
 @media (max-width: 768px) {
   .reservations-main-container {
     width: 100%;
+    display: flex;
+    flex-direction: column;
   }
 
   .reservations-list-container {
