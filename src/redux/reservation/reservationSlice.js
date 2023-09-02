@@ -4,7 +4,7 @@ import axios from 'axios';
 export const postReservation = createAsyncThunk(
   'postReservation',
   async (data) => {
-    const userId = JSON.parse(localStorage.getItem('user')).id;
+    const userId = JSON.parse(localStorage.getItem('user'));
     const RESERVATION_URL = `http://localhost:3000/api/users/${userId}/reservations`;
     const response = await axios.post(RESERVATION_URL, data);
     return response.data;
@@ -12,7 +12,7 @@ export const postReservation = createAsyncThunk(
 );
 
 export const getReservations = createAsyncThunk('getReservations', async () => {
-  const userId = JSON.parse(localStorage.getItem('user')).id;
+  const userId = JSON.parse(localStorage.getItem('user'));
   const RESERVATION_URL = `http://localhost:3000/api/users/${userId}/reservations`;
   const response = await axios.get(RESERVATION_URL, {
     headers: {
@@ -36,6 +36,7 @@ const initialState = {
   creationMsg: '',
   loading: false,
   error: '',
+  reservationsFetched:false,
 };
 
 const reservationSlice = createSlice({
@@ -45,11 +46,11 @@ const reservationSlice = createSlice({
     createMsgAction: (state, action) => {
       state.creationMsg = action.payload;
     },
-    setRemoveReservation: (state, action) => {
-      state.reservation = state.reservation.filter(
-        (reservation) => reservation.motorcycle_id !== action.payload,
-      );
+
+    markReservationsAsFetched: (state) => {
+      state.reservationsFetched = true;
     },
+
   },
   extraReducers: (builder) => {
     builder
@@ -80,5 +81,5 @@ const reservationSlice = createSlice({
   },
 });
 
-export const { createMsgAction, setRemoveReservation } = reservationSlice.actions;
+export const { createMsgAction, markReservationsAsFetched } = reservationSlice.actions;
 export default reservationSlice.reducer;

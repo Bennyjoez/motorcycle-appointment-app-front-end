@@ -1,30 +1,54 @@
 import { useSelector, useDispatch } from 'react-redux';
 import React, { useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { getReservations } from '../../redux/reservation/reservationSlice';
-import { getMotorcycles } from '../../redux/motorcycles/motorcycleSlice';
+import {
+  getReservations,
+  
+} from '../../redux/reservation/reservationSlice';
 import Navbar from '../navbar';
 import '../../stylesheets/reservations.css';
 
 const Reservations = () => {
   const isLoggedIn = JSON.parse(window.localStorage.getItem('logged_in'));
   const user = JSON.parse(window.localStorage.getItem('user'));
-  const motorcycles = useSelector((state) => state.motorcycles.motorcycles);
-  const { reservation } = useSelector((state) => state.reservations);
+  const motorcycles = useSelector(
+    (state) => state.state.motorcycles.motorcycles
+  );
+  const { reservation, creationMsg } = useSelector(
+    (state) => state.state.reservations
+  );
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (motorcycles.length === 0) {
-      dispatch(getMotorcycles());
+
+    if (creationMsg === 'success' && isLoggedIn) {
+      dispatch(getReservations());
     }
-    dispatch(getReservations());
     if (!isLoggedIn) {
       setTimeout(() => {
-        navigate('/user/login');
+        navigate('/login');
       }, 2000);
     }
-  }, [dispatch, isLoggedIn, navigate, motorcycles]);
+  }, [dispatch, isLoggedIn, navigate]);
+
+  // useEffect(() => {
+  //   // Fetch reservations only if not already fetched and user is logged in
+  //   if (!reservationsFetched && isLoggedIn) {
+  //     dispatch(getReservations());
+
+  //     // Mark reservations as fetched to avoid repeated requests
+  //     dispatch(markReservationsAsFetched());
+  //   }
+
+  //   if (!isLoggedIn) {
+  //     setTimeout(() => {
+  //       navigate('/login');
+  //     }, 2000);
+  //   }
+  // }, [dispatch, isLoggedIn, navigate, reservationsFetched]);
+  // console.log(reservationsFetched);
 
   const sortReservations = (a, b) => {
     const dateA = new Date(a.date);
@@ -34,7 +58,7 @@ const Reservations = () => {
   };
 
   const userReservations = reservation.filter(
-    (reservation) => reservation.user_id === user.id,
+    (reservation) => reservation.user_id === user
   );
   const sortedReservations = userReservations.slice().sort(sortReservations);
 
@@ -48,18 +72,11 @@ const Reservations = () => {
             {sortedReservations.length !== 0 ? (
               <div className="reservations-list">
                 <p className="next-appointment-info">
-                  Your next appointment is on
-                  {' '}
+                  Your next appointment is on{' '}
                   {new Date(sortedReservations[0].date)
                     .toUTCString()
-                    .substring(0, 16)}
-                  {' '}
-                  in
-                  {' '}
-                  {sortedReservations[0].city}
-                  {' '}
-                  with
-                  {' '}
+                    .substring(0, 16)}{' '}
+                  in {sortedReservations[0].city} with{' '}
                   {sortedReservations[0].motorcycle}
                 </p>
                 <table className="reservations-table">
@@ -77,7 +94,8 @@ const Reservations = () => {
                         <td>
                           {(() => {
                             const foundMotorcycle = motorcycles.find(
-                              (motorcycle) => motorcycle.id === reservation.motorcycle_id,
+                              (motorcycle) =>
+                                motorcycle.id === reservation.motorcycle_id
                             );
                             let motorcycleName = '';
                             if (foundMotorcycle) {
@@ -97,7 +115,7 @@ const Reservations = () => {
             ) : (
               <div className="no-reservations-container">
                 <p className="no-reservations-msg">You have no reservations</p>
-                <Link to="/motorcycles" className="no-reservations-link">
+                <Link to="/reserve" className="no-reservations-link">
                   Click here to reserve a motorcycle
                 </Link>
               </div>
