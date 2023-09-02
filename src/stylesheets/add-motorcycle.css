@@ -33,7 +33,8 @@
   width: 100%;
   padding: 1rem;
   min-height: calc(100vh - 56px);
-  background-image: linear-gradient(0deg, #96bf0fe1, #96bf0fe1),
+  background-image:
+    linear-gradient(0deg, #96bf0fe1, #96bf0fe1),
     url(/src/images/bmw-e-power-bike.png);
   color: white;
   background-position: center;
