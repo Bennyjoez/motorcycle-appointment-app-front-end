@@ -5,51 +5,103 @@ import { useSelector, useDispatch } from 'react-redux';
 import { postRegister } from '../../redux/sessions/sessionsSlice';
 
 const Login = () => {
-  const [usernameState, setUsernameState] = useState('');
-  const [existState, setExistState] = useState(false);
-  const [clickedState, setClickedState] = useState(false);
-  const [validMsgDisplayState, setValidMsgDisplayState] = useState(false);
+  // const [usernameState, setUsernameState] = useState('');
+  // const [existState, setExistState] = useState(false);
+  // const [clickedState, setClickedState] = useState(false);
+  // const [validMsgDisplayState, setValidMsgDisplayState] = useState(false);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  // const userData = useSelector((state) => state.sessions);
+  // console.log(userData);
+
+  // const userDispatch = () => {
+  //   setClickedState(true);
+  //   if (usernameState.length === 0) {
+  //     setValidMsgDisplayState(true);
+  //     setExistState(false);
+  //   } else {
+  //     dispatch(postRegister({ obj: { username: usernameState }, endpoint: 'login' }));
+  //   }
+  // };
+
+  // const setUsername = (e) => {
+  //   setUsernameState(e.target.value);
+  // };
+
+  // useEffect(() => {
+  //   if (userData.loggedIn === false) {
+  //     if (clickedState) {
+  //       setExistState(true);
+  //       setValidMsgDisplayState(false);
+  //     }
+  //   }
+  //   if (userData.loggedIn === true) {
+  //     setExistState(false);
+  //     localStorage.setItem('logged_in', true);
+
+  //     localStorage.setItem('userId', JSON.stringify(userData.user.id));
+  //   }
+  //   if (localStorage.getItem('logged_in') === 'true') {
+  //     if (!userData) {
+  //       dispatch(postRegister({ obj: { username: usernameState }, endpoint: 'login' }));
+  //     }
+  //     navigate('/motorcycles');
+  //   }
+  // }, [userData.message,
+  //   userData.loggedIn, navigate, dispatch, userData, clickedState]);
+
   const userData = useSelector((state) => state.sessions);
-  console.log(userData);
+
+  const [usernameState, setUsernameState] = useState('');
+  const [existState, setExistState] = useState(false);
+  const [clicked, setClickedState] = useState(false);
+  const [validMsgDisplayState, setValidDisplayState] = useState(false);
 
   const userDispatch = () => {
     setClickedState(true);
     if (usernameState.length === 0) {
-      setValidMsgDisplayState(true);
+      setValidDisplayState(true);
       setExistState(false);
     } else {
-      dispatch(postRegister({ obj: { username: usernameState }, endpoint: 'login' }));
+      dispatch(
+        postRegister({ obj: { username: usernameState }, endpoint: 'login' }),
+      );
     }
   };
-
   const setUsername = (e) => {
     setUsernameState(e.target.value);
   };
 
   useEffect(() => {
-    if (userData.loggedIn === false) {
-      if (clickedState) {
+    if (userData.logged_in === false) {
+      if (clicked) {
         setExistState(true);
-        setValidMsgDisplayState(false);
+        setValidDisplayState(false);
       }
     }
-    if (userData.loggedIn === true) {
+    if (userData.logged_in === true) {
       setExistState(false);
       localStorage.setItem('logged_in', true);
 
-      localStorage.setItem('userId', JSON.stringify(userData.user.id));
+      localStorage.setItem('user', userData.user.user.id);
     }
     if (localStorage.getItem('logged_in') === 'true') {
       if (!userData) {
-        dispatch(postRegister({ obj: { username: usernameState }, endpoint: 'login' }));
+        dispatch(
+          postRegister({ obj: { username: usernameState }, endpoint: 'login' }),
+        );
       }
       navigate('/motorcycles');
     }
-  }, [userData.message,
-    userData.loggedIn, navigate, dispatch, userData, clickedState]);
+  }, [
+    userData.message,
+    userData.logged_in,
+    navigate,
+    dispatch,
+    userData,
+    clicked,
+  ]);
 
   return (
     <div className="form-main-container">
