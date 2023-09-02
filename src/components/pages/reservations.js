@@ -1,21 +1,21 @@
-import { useSelector, useDispatch } from "react-redux";
-import React, { useEffect } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useSelector, useDispatch } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
 import {
   getReservations,
   markReservationsAsFetched,
-} from "../../redux/reservation/reservationSlice";
-import Navbar from "../navbar";
-import "../../stylesheets/reservations.css";
+} from '../../redux/reservation/reservationSlice';
+import Navbar from '../navbar';
+import '../../stylesheets/reservations.css';
 
 const Reservations = () => {
   const user = useSelector((state) => state.state.sessions.user.id);
   const isLoggedIn = useSelector((state) => state.state.sessions.loggedIn);
   const motorcycles = useSelector(
-    (state) => state.state.motorcycles.motorcycles
+    (state) => state.state.motorcycles.motorcycles,
   );
   const { reservation, reservationsFetched } = useSelector(
-    (state) => state.state.reservations
+    (state) => state.state.reservations,
   );
 
   const navigate = useNavigate();
@@ -29,7 +29,7 @@ const Reservations = () => {
 
     if (!isLoggedIn) {
       setTimeout(() => {
-        navigate("/login");
+        navigate('/login');
       }, 2000);
     }
   }, [dispatch, navigate, reservationsFetched]);
@@ -42,7 +42,7 @@ const Reservations = () => {
   };
 
   const userReservations = reservation.filter(
-    (reservation) => reservation.user_id === user
+    (reservation) => reservation.user_id === user,
   );
   const sortedReservations = userReservations.slice().sort(sortReservations);
 
@@ -56,11 +56,18 @@ const Reservations = () => {
             {sortedReservations.length !== 0 ? (
               <div className="reservations-list">
                 <p className="next-appointment-info">
-                  Your next appointment is on{" "}
+                  Your next appointment is on
+                  {' '}
                   {new Date(sortedReservations[0].date)
                     .toUTCString()
-                    .substring(0, 16)}{" "}
-                  in {sortedReservations[0].city} with{" "}
+                    .substring(0, 16)}
+                  {' '}
+                  in
+                  {' '}
+                  {sortedReservations[0].city}
+                  {' '}
+                  with
+                  {' '}
                   {sortedReservations[0].motorcycle}
                 </p>
                 <table className="reservations-table">
@@ -78,10 +85,9 @@ const Reservations = () => {
                         <td>
                           {(() => {
                             const foundMotorcycle = motorcycles.find(
-                              (motorcycle) =>
-                                motorcycle.id === reservation.motorcycle_id
+                              (motorcycle) => motorcycle.id === reservation.motorcycle_id,
                             );
-                            let motorcycleName = "";
+                            let motorcycleName = '';
                             if (foundMotorcycle) {
                               motorcycleName = foundMotorcycle.name;
                             }

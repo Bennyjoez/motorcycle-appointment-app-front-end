@@ -1,11 +1,11 @@
-import { configureStore } from "@reduxjs/toolkit";
-import { persistStore, persistReducer } from "redux-persist";
-import storageSession from "redux-persist/lib/storage/session";
+import { configureStore } from '@reduxjs/toolkit';
+import { persistStore, persistReducer } from 'redux-persist';
+import storageSession from 'redux-persist/lib/storage/session';
 
-import rootReducer from "./rootReducer";
+import rootReducer from './rootReducer';
 
 const persistConfig = {
-  key: "motorcycleApp",
+  key: 'motorcycleApp',
   storage: storageSession,
 };
 

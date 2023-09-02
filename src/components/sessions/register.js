@@ -1,37 +1,37 @@
-import { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
-import { postRegister } from "../../redux/sessions/sessionsSlice";
-import { getMotorcycles } from "../../redux/motorcycles/motorcycleSlice";
-import "../../stylesheets/register.css";
+import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
+import { postRegister } from '../../redux/sessions/sessionsSlice';
+import { getMotorcycles } from '../../redux/motorcycles/motorcycleSlice';
+import '../../stylesheets/register.css';
 
 const Register = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const userData = useSelector((state) => state.state.sessions);
 
-  const [usernameState, setUsernameState] = useState("");
+  const [usernameState, setUsernameState] = useState('');
   const [existState, setExistState] = useState(false);
-  const [validMsgState, setValidMsgState] = useState("");
+  const [validMsgState, setValidMsgState] = useState('');
   const [clickedState, setClickedState] = useState(false);
   const [validDisplayState, setValidDisplayState] = useState(false);
 
   const validate = () => {
     setClickedState(true);
     if (usernameState.length === 0) {
-      setValidMsgState("Username field cannot be empty");
+      setValidMsgState('Username field cannot be empty');
       setValidDisplayState(true);
       setExistState(false);
     } else if (usernameState.length < 6) {
-      setValidMsgState("Username must be at least 6 characters long");
+      setValidMsgState('Username must be at least 6 characters long');
       setValidDisplayState(true);
       setExistState(false);
     } else if (usernameState.length >= 6) {
       dispatch(
         postRegister({
           obj: { username: usernameState },
-          endpoint: "register",
-        })
+          endpoint: 'register',
+        }),
       );
     }
   };
@@ -53,11 +53,11 @@ const Register = () => {
     if (userData.loggedIn) {
       if (!userData) {
         dispatch(
-          postRegister({ obj: { username: usernameState }, endpoint: "login" })
+          postRegister({ obj: { username: usernameState }, endpoint: 'login' }),
         );
       }
       dispatch(getMotorcycles());
-      navigate("/motorcycles");
+      navigate('/motorcycles');
     }
   }, [
     userData.message,
@@ -83,7 +83,7 @@ const Register = () => {
           <div
             className="backend-error"
             style={{
-              display: existState ? "inherit" : "none",
+              display: existState ? 'inherit' : 'none',
             }}
           >
             <p>{userData.message}</p>
@@ -91,7 +91,7 @@ const Register = () => {
           <div
             className="error"
             style={{
-              display: validDisplayState ? "inherit" : "none",
+              display: validDisplayState ? 'inherit' : 'none',
             }}
           >
             <p>{validMsgState}</p>

@@ -1,9 +1,9 @@
-import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, Link } from "react-router-dom";
-import { logOut } from "../redux/sessions/sessionsSlice";
-import "../stylesheets/navpanel.css";
-import logo from "../logo.png";
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate, Link } from 'react-router-dom';
+import { logOut } from '../redux/sessions/sessionsSlice';
+import '../stylesheets/navpanel.css';
+import logo from '../logo.png';
 
 const NavPanel = () => {
   const dispatch = useDispatch();
@@ -13,7 +13,7 @@ const NavPanel = () => {
   const clearUserData = () => {
     sessionStorage.clear();
     dispatch(logOut());
-    navigate("/");
+    navigate('/');
   };
   return (
     <nav className="nav-panel-main-container">
