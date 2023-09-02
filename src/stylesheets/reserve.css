@@ -1,5 +1,7 @@
 body {
   font-family: "Poppins", sans-serif;
+
+  /* overflow: hidden; */
 }
 
 .popup-message {
@@ -40,7 +42,7 @@ body {
 .reserve-main-container {
   width: 100%;
   padding: 1rem;
-  min-height: 100vh;
+  min-height: calc(100vh - 56px);
   display: flex;
   align-items: center;
   flex-direction: column;
