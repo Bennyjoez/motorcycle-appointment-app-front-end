@@ -1,18 +1,18 @@
-import { useSelector, useDispatch } from 'react-redux';
-import React, { useEffect, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useSelector, useDispatch } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import {
   createMsgAction,
   postReservation,
-} from '../../redux/reservation/reservationSlice';
-import '../../stylesheets/reserve.css';
-import Navbar from '../navbar';
+} from "../../redux/reservation/reservationSlice";
+import "../../stylesheets/reserve.css";
+import Navbar from "../navbar";
 
 const Reservations = () => {
-  const { motorcycles } = useSelector((state) => state.motorcycles);
+  const { motorcycles } = useSelector((state) => state.state.motorcycles);
   const createmsg = useSelector((state) => state.sessions);
-  const user = JSON.parse(window.localStorage.getItem('user'));
-  const isLoggedIn = JSON.parse(window.localStorage.getItem('logged_in'));
+  const user = useSelector((state) => state.state.sessions.user.id);
+  const isLoggedIn = useSelector((state) => state.state.sessions.loggedIn);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -20,37 +20,38 @@ const Reservations = () => {
 
   const { chosenMotorcycleId = -1 } = location.state || {};
 
-  const [motorcycleIdState, setMotorcycleIdState] = useState(chosenMotorcycleId);
-  const [date, setDate] = useState('');
-  const [city, setCity] = useState('');
-  const [status, setStatus] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
+  const [motorcycleIdState, setMotorcycleIdState] =
+    useState(chosenMotorcycleId);
+
+  const [date, setDate] = useState("");
+  const [city, setCity] = useState("");
+  const [status, setStatus] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
   const [created, setCreated] = useState(false);
 
   useEffect(() => {
     if (!isLoggedIn) {
       setTimeout(() => {
-        navigate('/');
+        navigate("/");
       }, 2000);
     }
 
-    if (createmsg === 'success') {
+    if (createmsg === "success") {
       setCreated(true);
-      setErrorMessage('');
-      setErrorMessage('');
+      setErrorMessage("");
+      setErrorMessage("");
       dispatch(createMsgAction());
       setTimeout(() => {
-        navigate('/reservations');
+        navigate("/reservations");
       }, 2500);
     }
-    if (createmsg === '') {
+    if (createmsg === "") {
       setErrorMessage(
-        "Oops! Reservation couldn't be created. Can't reserve the same motorcycle on the same day.",
+        "Oops! Reservation couldn't be created. Can't reserve the same motorcycle on the same day."
       );
       dispatch(createMsgAction());
     }
   }, [createmsg, created, dispatch, isLoggedIn, navigate]);
-
   if (!isLoggedIn) {
     return (
       <div className="popup-message">
@@ -61,65 +62,65 @@ const Reservations = () => {
 
   const cities = [
     // Cities from Nigeria
-    'Lagos',
-    'Abuja',
-    'Kano',
-    'Ibadan',
-    'Port Harcourt',
-    'Benin City',
-    'Kaduna',
-    'Enugu',
-    'Abeokuta',
-    'Onitsha',
+    "Lagos",
+    "Abuja",
+    "Kano",
+    "Ibadan",
+    "Port Harcourt",
+    "Benin City",
+    "Kaduna",
+    "Enugu",
+    "Abeokuta",
+    "Onitsha",
 
     // Cities from Kenya
-    'Nairobi',
-    'Mombasa',
-    'Kisumu',
-    'Nakuru',
-    'Eldoret',
-    'Thika',
-    'Malindi',
-    'Kakamega',
-    'Meru',
-    'Nyeri',
+    "Nairobi",
+    "Mombasa",
+    "Kisumu",
+    "Nakuru",
+    "Eldoret",
+    "Thika",
+    "Malindi",
+    "Kakamega",
+    "Meru",
+    "Nyeri",
 
     // Cities from Ghana
-    'Accra',
-    'Kumasi',
-    'Tamale',
-    'Takoradi',
-    'Cape Coast',
-    'Sekondi-Takoradi',
-    'Ho',
-    'Koforidua',
-    'Wa',
-    'Sunyani',
+    "Accra",
+    "Kumasi",
+    "Tamale",
+    "Takoradi",
+    "Cape Coast",
+    "Sekondi-Takoradi",
+    "Ho",
+    "Koforidua",
+    "Wa",
+    "Sunyani",
 
     // Cities from India
-    'Mumbai',
-    'Delhi',
-    'Bangalore',
-    'Hyderabad',
-    'Chennai',
-    'Kolkata',
-    'Pune',
-    'Ahmedabad',
-    'Jaipur',
-    'Lucknow',
+    "Mumbai",
+    "Delhi",
+    "Bangalore",
+    "Hyderabad",
+    "Chennai",
+    "Kolkata",
+    "Pune",
+    "Ahmedabad",
+    "Jaipur",
+    "Lucknow",
   ];
 
-  const statusOption = ['Confirmed', 'Not confirmed'];
+  const statusOption = ["Confirmed", "Not confirmed"];
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (
-      motorcycleIdState === -1
-      || date === ''
-      || city === ''
-      || status === ''
+      motorcycleIdState === -1 ||
+      date === "" ||
+      city === "" ||
+      status === ""
     ) {
-      setErrorMessage('Please fill all fields');
+      setErrorMessage("Please fill all fields");
     }
     const reservation = {
       motorcycle_id: motorcycleIdState,
@@ -129,7 +130,7 @@ const Reservations = () => {
       status,
     };
     dispatch(postReservation(reservation));
-    navigate('/reservations');
+    navigate("/reservations");
   };
 
   const getCurrentDate = () => new Date().toJSON().slice(0, 10);
@@ -148,7 +149,7 @@ const Reservations = () => {
 
         <form onSubmit={handleSubmit} className="reserve-form">
           <select
-            defaultValue={chosenMotorcycleId || ''}
+            defaultValue={chosenMotorcycleId || ""}
             name="motorcycle_id"
             id="motorcycle-drop-down"
             onChange={(e) => setMotorcycleIdState(e.target.value)}
@@ -202,7 +203,7 @@ const Reservations = () => {
           <input type="submit" value="Book Now" />
         </form>
 
-        <div className={`popup-message ${created ? '' : 'hidden'}`}>
+        <div className={`popup-message ${created ? "" : "hidden"}`}>
           <p>Reservation has been created successfully!</p>
         </div>
       </div>
