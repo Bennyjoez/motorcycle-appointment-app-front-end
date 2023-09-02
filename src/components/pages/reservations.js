@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import {
   getReservations,
-  
+
 } from '../../redux/reservation/reservationSlice';
 import Navbar from '../navbar';
 import '../../stylesheets/reservations.css';
@@ -12,17 +12,16 @@ const Reservations = () => {
   const isLoggedIn = JSON.parse(window.localStorage.getItem('logged_in'));
   const user = JSON.parse(window.localStorage.getItem('user'));
   const motorcycles = useSelector(
-    (state) => state.state.motorcycles.motorcycles
+    (state) => state.state.motorcycles.motorcycles,
   );
   const { reservation, creationMsg } = useSelector(
-    (state) => state.state.reservations
+    (state) => state.state.reservations,
   );
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   useEffect(() => {
-
     if (creationMsg === 'success' && isLoggedIn) {
       dispatch(getReservations());
     }
@@ -58,7 +57,7 @@ const Reservations = () => {
   };
 
   const userReservations = reservation.filter(
-    (reservation) => reservation.user_id === user
+    (reservation) => reservation.user_id === user,
   );
   const sortedReservations = userReservations.slice().sort(sortReservations);
 
@@ -72,11 +71,18 @@ const Reservations = () => {
             {sortedReservations.length !== 0 ? (
               <div className="reservations-list">
                 <p className="next-appointment-info">
-                  Your next appointment is on{' '}
+                  Your next appointment is on
+                  {' '}
                   {new Date(sortedReservations[0].date)
                     .toUTCString()
-                    .substring(0, 16)}{' '}
-                  in {sortedReservations[0].city} with{' '}
+                    .substring(0, 16)}
+                  {' '}
+                  in
+                  {' '}
+                  {sortedReservations[0].city}
+                  {' '}
+                  with
+                  {' '}
                   {sortedReservations[0].motorcycle}
                 </p>
                 <table className="reservations-table">
@@ -94,8 +100,7 @@ const Reservations = () => {
                         <td>
                           {(() => {
                             const foundMotorcycle = motorcycles.find(
-                              (motorcycle) =>
-                                motorcycle.id === reservation.motorcycle_id
+                              (motorcycle) => motorcycle.id === reservation.motorcycle_id,
                             );
                             let motorcycleName = '';
                             if (foundMotorcycle) {

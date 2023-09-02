@@ -21,8 +21,6 @@ const persistor = persistStore(store);
 
 export { store, persistor };
 
-
-
 // import sessionsReducer from './sessions/sessionsSlice';
 
 // import motorcycleReducer from './motorcycles/motorcycleSlice';
@@ -36,4 +34,3 @@ export { store, persistor };
 // });
 
 // export default store;
-

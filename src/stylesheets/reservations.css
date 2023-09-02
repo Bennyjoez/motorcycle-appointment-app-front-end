@@ -86,31 +86,25 @@ th {
     font-size: 12px;
   }
 
+  table,
+  th,
   td {
-    font-size: 12px;
+    border: 2px solid #96bf0fe1;
+    border-collapse: collapse;
   }
 
-  table,
-th,
-td {
-  border: 2px solid #96bf0fe1;
-  border-collapse: collapse;
-}
+  th,
+  td {
+    padding: 10px;
+    text-align: center;
+  }
 
-th,
-td {
-  padding: 10px;
-  text-align: center;
-}
+  td {
+    font-size: 18px;
+  }
 
-td{
-  font-size: 18px;
-}
-
-th {
+  th {
     font-weight: 700;
     font-size: 22px;
+  }
 }
-}
-
-

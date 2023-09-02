@@ -41,7 +41,7 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  margin-top:90px;
+  margin-top: 90px;
 }
 
 .details-img-container {
@@ -180,7 +180,7 @@
     gap: 1em;
     align-items: flex-start;
     padding: 1em 0;
-    margin-top:0;
+    margin-top: 0;
   }
 
   .details-img-container {
@@ -260,8 +260,7 @@
 }
 
 @media only screen and (min-width: 1440px) {
-  .details-motor-name{
+  .details-motor-name {
     font-size: 3rem;
   }
-  
 }

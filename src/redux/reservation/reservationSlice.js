@@ -36,7 +36,7 @@ const initialState = {
   creationMsg: '',
   loading: false,
   error: '',
-  reservationsFetched:false,
+  reservationsFetched: false,
 };
 
 const reservationSlice = createSlice({
