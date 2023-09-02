@@ -9,7 +9,7 @@ import '../../stylesheets/reserve.css';
 import Navbar from '../navbar';
 
 const Reservations = () => {
-  const { motorcycles } = useSelector((state) => state.motorcycles);
+  const { motorcycles } = useSelector((state) => state.state.motorcycles);
   const createmsg = useSelector((state) => state.sessions);
   const user = JSON.parse(window.localStorage.getItem('user'));
   const isLoggedIn = JSON.parse(window.localStorage.getItem('logged_in'));
@@ -17,10 +17,13 @@ const Reservations = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
-
+ 
   const { chosenMotorcycleId = -1 } = location.state || {};
 
-  const [motorcycleIdState, setMotorcycleIdState] = useState(chosenMotorcycleId);
+  const [motorcycleIdState, setMotorcycleIdState] =
+    useState(chosenMotorcycleId);
+
+    console.log("location_id:",motorcycleIdState);
   const [date, setDate] = useState('');
   const [city, setCity] = useState('');
   const [status, setStatus] = useState('');
@@ -45,7 +48,7 @@ const Reservations = () => {
     }
     if (createmsg === '') {
       setErrorMessage(
-        "Oops! Reservation couldn't be created. Can't reserve the same motorcycle on the same day.",
+        "Oops! Reservation couldn't be created. Can't reserve the same motorcycle on the same day."
       );
       dispatch(createMsgAction());
     }
@@ -114,10 +117,10 @@ const Reservations = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (
-      motorcycleIdState === -1
-      || date === ''
-      || city === ''
-      || status === ''
+      motorcycleIdState === -1 ||
+      date === '' ||
+      city === '' ||
+      status === ''
     ) {
       setErrorMessage('Please fill all fields');
     }

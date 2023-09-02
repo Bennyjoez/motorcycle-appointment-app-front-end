@@ -10,7 +10,7 @@ const Details = () => {
   const { motorcycles } = useSelector((state) => state.state.motorcycles);
 
   const filtered = motorcycles.filter((cycle) => cycle.id === motorId);
-
+  console.log(filtered[0]);
   return (
     <div className="details-main-container">
       <section className="details-nav-container">
@@ -40,11 +40,9 @@ const Details = () => {
               </li>
             </ul>
             <Link
-             to={{
-              pathname: '/reserve', // Replace with your target component's route
-              state: { Id: motorId }, // Pass data in the state object
-            }}
               className="reserve-btn"
+              to="/reserve"
+              state={{ chosenMotorcycleId: filtered[0].id }}
             >
               Reserve
             </Link>

@@ -41,6 +41,7 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+  margin-top:90px;
 }
 
 .details-img-container {
@@ -179,13 +180,15 @@
     gap: 1em;
     align-items: flex-start;
     padding: 1em 0;
+    margin-top:0;
   }
 
   .details-img-container {
     width: 60%;
+    min-height: 76vh;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
   }
 
@@ -254,4 +257,11 @@
     padding: 10px 20px;
     border-radius: 50px;
   }
+}
+
+@media only screen and (min-width: 1440px) {
+  .details-motor-name{
+    font-size: 3rem;
+  }
+  
 }
