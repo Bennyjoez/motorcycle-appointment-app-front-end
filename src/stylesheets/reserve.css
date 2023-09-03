@@ -89,7 +89,9 @@ body {
 
   .reserve-motorcycle-page {
     display: grid;
+
     /* flex-direction: row; */
+
     /* align-items: center;
     justify-content: center; */
     grid-template-columns: 15vw 85vw;

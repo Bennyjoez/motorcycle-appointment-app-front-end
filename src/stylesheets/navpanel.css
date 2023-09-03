@@ -52,14 +52,11 @@ a.nav-link:focus {
 
 @media (min-width: 768px) {
   /* Desktop-specific styles */
-  .nav-links-container {
-    padding: 0 0 0 0.5em;
-  }
-
   a.nav-link {
     padding: 8px 5px;
     font-size: 0.8rem;
   }
+
   .nav-links-container {
     list-style-type: none;
     padding: 0 0 0 20px;

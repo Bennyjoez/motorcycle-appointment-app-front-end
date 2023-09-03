@@ -60,6 +60,7 @@ th {
   .reservations-main-container {
     width: 100%;
     display: grid;
+
     /* flex-direction: row; */
     grid-template-columns: 15vw 85vw;
   }
