@@ -59,8 +59,9 @@ th {
 @media (min-width: 768px) {
   .reservations-main-container {
     width: 100%;
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    /* flex-direction: row; */
+    grid-template-columns: 15vw 85vw;
   }
 
   .reservations-list-container {

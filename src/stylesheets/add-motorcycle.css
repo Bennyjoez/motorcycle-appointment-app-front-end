@@ -71,8 +71,9 @@ textarea::placeholder {
 
 @media only screen and (min-width: 768px) {
   .add-motor-main-container {
-    display: flex;
-    align-items: center;
+    display: grid;
+    grid-template-columns: 15vw 85vw;
+    grid-template-rows: 100%;
   }
 
   .add-motor-body {
