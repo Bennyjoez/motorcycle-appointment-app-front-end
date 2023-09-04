@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { useNavigate, Link } from 'react-router-dom';
 import { logOut } from '../redux/sessions/sessionsSlice';
 import '../stylesheets/navpanel.css';
+import logo from '../logo.png';
 
 const NavPanel = () => {
   const dispatch = useDispatch();
@@ -17,8 +18,9 @@ const NavPanel = () => {
   };
   return (
     <nav className="nav-panel-main-container">
-      <div className="logo-container">logo</div>
-
+      <div className="logo-container">
+        <img src={logo} alt="logo" width={100} />
+      </div>
       <div className="nav-links-container">
         <Link to="/motorcycles" className="nav-link">
           Motorcyles

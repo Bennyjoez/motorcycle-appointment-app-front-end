@@ -9,7 +9,7 @@ import '../../stylesheets/reserve.css';
 import Navbar from '../navbar';
 
 const Reservations = () => {
-  const { motorcycles } = useSelector((state) => state.motorcycles);
+  const { motorcycles } = useSelector((state) => state.state.motorcycles);
   const createmsg = useSelector((state) => state.sessions);
   const user = JSON.parse(window.localStorage.getItem('user'));
   const isLoggedIn = JSON.parse(window.localStorage.getItem('logged_in'));
@@ -21,6 +21,8 @@ const Reservations = () => {
   const { chosenMotorcycleId = -1 } = location.state || {};
 
   const [motorcycleIdState, setMotorcycleIdState] = useState(chosenMotorcycleId);
+
+  console.log('location_id:', motorcycleIdState);
   const [date, setDate] = useState('');
   const [city, setCity] = useState('');
   const [status, setStatus] = useState('');

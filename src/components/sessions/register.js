@@ -2,12 +2,13 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { postRegister } from '../../redux/sessions/sessionsSlice';
+import { getMotorcycles } from '../../redux/motorcycles/motorcycleSlice';
 import '../../stylesheets/register.css';
 
 const Register = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const userData = useSelector((state) => state.sessions);
+  const userData = useSelector((state) => state.state.sessions);
 
   const [usernameState, setUsernameState] = useState('');
   const [existState, setExistState] = useState(false);
@@ -57,6 +58,7 @@ const Register = () => {
           postRegister({ obj: { username: usernameState }, endpoint: 'login' }),
         );
       }
+      dispatch(getMotorcycles());
       navigate('/motorcycles');
     }
   }, [
