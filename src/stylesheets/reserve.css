@@ -85,6 +85,7 @@ body {
   .reserve-main-container {
     padding: 1rem 15%;
     min-width: calc(100% - 10rem);
+    min-height: 100vh;
   }
 
   .reserve-motorcycle-page {

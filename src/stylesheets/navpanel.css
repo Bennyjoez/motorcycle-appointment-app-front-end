@@ -10,6 +10,10 @@
   padding: 10px 0;
 }
 
+section.navpanel-container {
+  z-index: 10;
+}
+
 .nav-links-container {
   list-style-type: none;
   padding: 0 0 0 20px;
