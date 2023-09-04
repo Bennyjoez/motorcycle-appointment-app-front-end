@@ -51,6 +51,7 @@ const reservationSlice = createSlice({
     markReservationsAsFetched: (state) => {
       state.reservationsFetched = true;
     },
+
   },
   extraReducers: (builder) => {
     builder

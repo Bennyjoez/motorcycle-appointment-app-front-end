@@ -5,24 +5,12 @@
   align-items: center;
 }
 
-.details-menu-toggle {
-  align-self: flex-start;
-  padding: 0 0.2em;
-  background-color: transparent;
-  margin: 0.7em 0.5em;
-  outline: none;
-  border-style: none;
-  font-size: 1.3em;
-}
-
 .details-nav-container {
   display: flex;
   flex-direction: column;
-  position: absolute;
   background-color: #fff;
-  left: 0;
-  top: 0;
   margin: 0;
+  width: 100%;
 }
 
 .close-btn {
@@ -40,9 +28,38 @@
 
 .details-body {
   display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
   background-color: #eee;
   flex-wrap: wrap;
   height: 100%;
+}
+
+.inner-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 90px;
+}
+
+.details-img-container {
+  width: 290px;
+  height: 290px;
+}
+
+.details-img-container > p {
+  width: 290px;
+  max-height: 3em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: pre-line;
+  text-align: center;
+}
+
+.details-img {
+  width: 100%;
 }
 
 .details-mobile-nav {
@@ -50,6 +67,55 @@
   top: 0;
   width: 100%;
   background-color: #fff;
+}
+
+.motor-info-reserve-btn-container {
+  display: flex;
+  flex-direction: column;
+  width: 290px;
+  margin: 20px 30px;
+}
+
+.motor-details-container > li {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px;
+}
+
+.motor-details-container > li:nth-child(odd) {
+  background-color: #aaa;
+}
+
+.reserve-btn {
+  text-decoration: none;
+  background-color: #97bf0f;
+  color: #fff;
+  align-self: flex-end;
+  padding: 10px 20px;
+  border-radius: 50px;
+}
+
+.motor-details-container {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 2em 0;
+}
+
+.details-back-btn {
+  padding: 1em 1.5em 1em 2em;
+  border-top-right-radius: 50px;
+  border-bottom-right-radius: 50px;
+  background-color: #97bf0f;
+  text-align: center;
+}
+
+.details-back-btn-container {
+  align-self: flex-start;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 }
 
 .hide {
@@ -78,12 +144,15 @@
 
   .details-body {
     display: block;
+    flex-direction: column;
+    justify-content: flex-start;
     position: static;
     grid-row: 1/2;
     grid-column: 2/3;
-    background-color: #eee;
     flex-wrap: wrap;
-    height: 100%;
+    max-height: 100%;
+    gap: 7em;
+    background-color: transparent;
   }
 
   .title-container {
@@ -104,10 +173,94 @@
     margin: 0;
   }
 
+  .inner-body {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 1em;
+    align-items: flex-start;
+    padding: 1em 0;
+    margin-top: 0;
+  }
+
+  .details-img-container {
+    width: 60%;
+    min-height: 76vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .details-img-container > img {
+    width: 60%;
+    align-self: center;
+  }
+
   .loading-msg {
     display: flex;
     justify-content: center;
     align-self: center;
     align-items: center;
+  }
+
+  .details-back-btn {
+    padding: 0.5em 1em 0.5em 1.5em;
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+    background-color: #97bf0f;
+    text-align: center;
+  }
+
+  .back-btn-icon {
+    color: #fff;
+  }
+
+  .details-motor-name {
+    font-size: 2em;
+    font-weight: 500;
+    margin-bottom: 0.5em;
+    border-style: none;
+    align-self: flex-end;
+  }
+
+  .motor-details-container {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 13em 0;
+  }
+
+  .motor-details-container > li {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px;
+  }
+
+  .motor-details-container > li:nth-child(odd) {
+    background-color: #aaa;
+  }
+
+  .motor-info-reserve-btn-container {
+    display: flex;
+    flex-direction: column;
+    width: 26%;
+    margin: 0 2em 0 0;
+  }
+
+  .reserve-btn {
+    text-decoration: none;
+    background-color: #97bf0f;
+    color: #fff;
+    align-self: flex-end;
+    padding: 10px 20px;
+    border-radius: 50px;
+  }
+}
+
+@media only screen and (min-width: 1440px) {
+  .details-motor-name {
+    font-size: 3rem;
   }
 }
