@@ -13,11 +13,6 @@ jest.mock('react-redux', () => ({
   useSelector: jest.fn(),
 }));
 
-jest.mock('react-slick', () => ({
-  __esModule: true,
-  default: jest.fn(() => <div>Mocked Slider Component</div>),
-}));
-
 describe('Reservations Component', () => {
   it('renders without errors when logged in', () => {
     useSelector.mockReturnValue({
