@@ -20,6 +20,7 @@
   margin: 10px 0;
 }
 
-.icon-container a {
+.icon-container a,
+.icon-container .icons {
   color: #aaa;
 }
