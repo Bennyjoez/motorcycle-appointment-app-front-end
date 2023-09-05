@@ -2,7 +2,6 @@ import React from 'react';
 import {
   render, screen, fireEvent, waitFor,
 } from '@testing-library/react';
-import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
 import Reservations from '../components/pages/reserve';
