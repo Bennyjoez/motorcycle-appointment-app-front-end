@@ -41,7 +41,7 @@ const Login = () => {
     <div className="form-main-container">
       <div className="background-overlay">
         <h2 className="form-title">Login</h2>
-        <form className="form-container">
+        <form className="login-form-container">
           <div className="name-input-msg-container">
             <input
               type="text"

@@ -18,7 +18,7 @@
   align-items: center;
 }
 
-.form-container {
+.login-form-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -33,7 +33,7 @@
 }
 
 .name-input {
-  width: 96%;
+  width: 100%;
   padding: 0.2em;
   font-size: 1em;
   outline: none;
