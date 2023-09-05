@@ -136,7 +136,9 @@ const Reservations = () => {
 
   return (
     <section className="reserve-motorcycle-page">
-      <Navbar />
+      <section className="reserve-nav-container">
+        <Navbar />
+      </section>
       <div className="reserve-main-container">
         <h1>HIRE A MOTOCYCLE</h1>
 

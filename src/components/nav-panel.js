@@ -1,6 +1,8 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, Link } from 'react-router-dom';
+import { FaFacebookF, FaTwitter } from 'react-icons/fa';
+import { ImInstagram } from 'react-icons/im';
 import { logOut } from '../redux/sessions/sessionsSlice';
 import '../stylesheets/navpanel.css';
 import logo from '../logo.png';
@@ -47,6 +49,17 @@ const NavPanel = () => {
             </button>
           )}
         </div>
+      </div>
+      <div className="icon-container">
+        <a href="https://web.facebook.com/?_rdc=1&_rdr" target="blank">
+          <FaFacebookF />
+        </a>
+        <a href="https://twitter.com/" target="blank">
+          <FaTwitter />
+        </a>
+        <a href="https://www.instagram.com/" target="blank">
+          <ImInstagram />
+        </a>
       </div>
     </nav>
   );

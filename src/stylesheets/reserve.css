@@ -85,13 +85,18 @@ body {
   .reserve-main-container {
     padding: 1rem 15%;
     min-width: calc(100% - 10rem);
+    min-height: 100vh;
   }
 
   .reserve-motorcycle-page {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
+    display: grid;
+
+    /* flex-direction: row; */
+
+    /* align-items: center;
+    justify-content: center; */
+    grid-template-columns: 15vw 85vw;
+    grid-template-rows: 100%;
   }
 }
 

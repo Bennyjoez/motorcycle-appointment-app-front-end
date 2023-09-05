@@ -5,17 +5,6 @@
   align-items: center;
 }
 
-.nav-container {
-  display: flex;
-  flex-direction: column;
-  position: fixed;
-  background-color: #fff;
-  left: 0;
-  top: 0;
-  margin: 0;
-  width: 100%;
-}
-
 .close-btn {
   background-color: transparent;
   margin: 0.5em;
@@ -30,10 +19,15 @@
 }
 
 .page-body {
-  display: flex;
-  background-color: #eee;
-  flex-wrap: wrap;
-  height: 100%;
+  display: block;
+  position: static;
+  grid-row: 1/2;
+  grid-column: 2/3;
+  margin: 0;
+  padding: 200px;
+  padding: 0;
+  height: 70%;
+  width: 100%;
 }
 
 .title-container {
@@ -41,17 +35,7 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  width: 100%;
-}
-
-.motorcycles-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  padding: 1em;
-  margin: 0;
+  margin-top: 20%;
 }
 
 .mobile-nav {
@@ -63,6 +47,53 @@
 
 .hide {
   display: none;
+}
+
+.card-description {
+  max-width: 250px;
+  text-align: center;
+}
+
+.slick-next {
+  background-color: #97bf0f !important;
+  right: 0 !important;
+  width: 30px !important;
+  height: 30px !important;
+  padding-left: 10px !important;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  color: white;
+  text-align: left;
+}
+
+.slick-prev {
+  background-color: #bdbdbd !important;
+  left: 0 !important;
+  width: 30px !important;
+  height: 30px !important;
+  padding-right: 10px !important;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  color: white;
+  text-align: right;
+  z-index: 5;
+}
+
+.slick-next,
+.slick-prev {
+  z-index: 5;
+}
+
+.card-img {
+  border-radius: 50%;
+}
+
+.separate {
+  width: 200px;
+  margin: 0 auto;
+  border-style: dashed;
+  border-color: gainsboro;
+  margin-block: 50px;
 }
 
 @media (min-width: 768px) {
@@ -78,39 +109,13 @@
     grid-template-rows: 100%;
   }
 
-  section.nav-container {
-    display: block;
-    position: static;
-    grid-row: 1/2;
-    grid-column: 1/2;
-  }
-
-  .page-body {
-    display: block;
-    position: static;
-    grid-row: 1/2;
-    grid-column: 2/3;
-    background-color: #eee;
-    flex-wrap: wrap;
-    height: 100%;
-  }
-
   .title-container {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
     width: 100%;
-  }
-
-  .motorcycles-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: flex-start;
-    flex-wrap: wrap;
-    padding: 1em;
-    margin: 0;
+    margin-top: 0;
   }
 
   .loading-msg {
@@ -118,5 +123,18 @@
     justify-content: center;
     align-self: center;
     align-items: center;
+  }
+
+  .slick-next,
+  .slick-prev {
+    width: 50px !important;
+    height: 40px !important;
+  }
+}
+
+@media only screen and (min-width: 1440px) {
+  .card-img {
+    height: 300px;
+    width: 300px;
   }
 }

@@ -33,7 +33,25 @@ export const postMotorcycles = createAsyncThunk(
     return responseData;
   },
 );
-
+export const deleteMotorcycle = createAsyncThunk(
+  'deleteMotorcycle',
+  async (id) => {
+    const response = await fetch(
+      `http://localhost:3000/api/motorcycles/${id}`,
+      {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      },
+    );
+    const responseData = await response.json();
+    if (response.status < 200 || response.status >= 300) {
+      throw new Error(responseData.message);
+    }
+    return id;
+  },
+);
 const initialState = {
   user: {},
   motorcycles: [],
@@ -72,6 +90,21 @@ const MotorcycleSlice = createSlice({
         };
       })
       .addCase(postMotorcycles.rejected, (state, action) => ({
+        ...state,
+        error: action.payload,
+        message: action.error.message,
+      }))
+      .addCase(deleteMotorcycle.fulfilled, (state, action) => {
+        const id = action.payload;
+        return {
+          ...state,
+          motorcycles: state.motorcycles.filter(
+            (motorcycle) => motorcycle.id !== id,
+          ),
+          message: 'delete success',
+        };
+      })
+      .addCase(deleteMotorcycle.rejected, (state, action) => ({
         ...state,
         error: action.payload,
         message: action.error.message,
