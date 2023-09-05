@@ -13,7 +13,7 @@ jest.mock('react-router-dom', () => ({
   useNavigate: () => mockNavigate,
 }));
 
-const reducer = (state = {}, action) => state;
+const reducer = (state = {}) => state;
 
 const initialState = {
   state: {
