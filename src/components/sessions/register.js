@@ -66,6 +66,7 @@ const Register = () => {
     dispatch,
     userData,
     clickedState,
+    usernameState,
   ]);
 
   return (

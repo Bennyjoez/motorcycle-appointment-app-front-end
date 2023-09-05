@@ -32,7 +32,7 @@ const Reservations = () => {
         navigate('/login');
       }, 2000);
     }
-  }, [dispatch, navigate, reservationsFetched]);
+  }, [dispatch, navigate, reservationsFetched, isLoggedIn, user]);
 
   const sortReservations = (a, b) => {
     const dateA = new Date(a.date);

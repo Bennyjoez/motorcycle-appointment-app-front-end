@@ -6,17 +6,10 @@ import { postRegister } from '../../redux/sessions/sessionsSlice';
 import { getMotorcycles } from '../../redux/motorcycles/motorcycleSlice';
 
 const Login = () => {
-
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-
-  const userData = useSelector((state) => state.sessions);
-
+  const loggedUser = useSelector((state) => state.state.sessions);
   const [usernameState, setUsernameState] = useState('');
-  const [existState, setExistState] = useState(false);
-  const [clicked, setClickedState] = useState(false);
-  const [validMsgDisplayState, setValidDisplayState] = useState(false);
   const [validMsgState, setValidMsgState] = useState('');
+  const [validMsgDisplayState, setValidMsgDisplayState] = useState(false);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -24,8 +17,6 @@ const Login = () => {
   const validate = (e) => {
     e.preventDefault();
     if (usernameState.length === 0) {
-      setValidDisplayState(true);
-      setExistState(false);
       setValidMsgState('Username cannot be empty');
       setValidMsgDisplayState(true);
     } else {
@@ -35,39 +26,16 @@ const Login = () => {
     }
   };
 
-  const setUsername = (e) => {
+  const setUserName = (e) => {
     setUsernameState(e.target.value);
   };
 
   useEffect(() => {
-    if (userData.logged_in === false) {
-      if (clicked) {
-        setExistState(true);
-        setValidDisplayState(false);
-      }
-    }
-    if (userData.logged_in === true) {
-      setExistState(false);
-      localStorage.setItem('logged_in', true);
-
-      localStorage.setItem('user', userData.user.user.id);
-    }
-    if (localStorage.getItem('logged_in') === 'true') {
-      if (!userData) {
-        dispatch(
-          postRegister({ obj: { username: usernameState }, endpoint: 'login' }),
-        );
-      }
+    if (loggedUser.loggedIn === true) {
+      dispatch(getMotorcycles());
       navigate('/motorcycles');
     }
-  }, [
-    userData.message,
-    userData.logged_in,
-    navigate,
-    dispatch,
-    userData,
-    clicked,
-  ]);
+  }, [loggedUser.loggedIn, loggedUser.message, dispatch, navigate]);
 
   return (
     <div className="form-main-container">
