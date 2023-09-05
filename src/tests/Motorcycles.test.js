@@ -1,54 +1,58 @@
-import React from "react";
-import { render, screen } from "@testing-library/react";
-import "@testing-library/jest-dom/extend-expect";
-import { useSelector } from "react-redux";
-import Motorcycles from "../components/pages/motorcycles";
-import { MemoryRouter } from "react-router-dom"; // Import MemoryRouter
+import React from 'react';
+import { render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom/extend-expect';
+import { useSelector } from 'react-redux';
+import { MemoryRouter } from 'react-router-dom'; // Import MemoryRouter
+import Motorcycles from '../components/pages/motorcycles';
 
 // Mock `useSelector` and `Navbar`
-jest.mock("react-redux", () => ({
+jest.mock('react-redux', () => ({
   useSelector: jest.fn(),
 }));
 
-jest.mock("../components/navbar.js", () => () => (
+jest.mock('../components/navbar.js', () => () => (
   <div data-testid="navbar">Navbar</div>
 ));
 
 // Mock `react-slick` to render its children
-jest.mock("react-slick", () => ({ children }) => <div>{children}</div>);
+jest.mock('react-slick', () => ({ children }) => <div>{children}</div>);
 
-describe("Motorcycles", () => {
-  it("displays loading when motorcycles are being fetched", () => {
-    useSelector.mockImplementation(() => ({ message: "loading" }));
+describe('Motorcycles', () => {
+  it('displays loading when motorcycles are being fetched', () => {
+    useSelector.mockImplementation(() => ({ message: 'loading' }));
 
     render(
       <MemoryRouter>
         <Motorcycles />
-      </MemoryRouter>
+      </MemoryRouter>,
     );
 
-    expect(screen.getByText("Loading...")).toBeInTheDocument();
+    expect(screen.getByText('Loading...')).toBeInTheDocument();
   });
 
-  it("displays motorcycles when they are available", async () => {
+  it('displays motorcycles when they are available', async () => {
     const mockMotorcycles = [
-      { id: 1, name: "Motor1", image: "img1", description: "desc1" },
-      { id: 2, name: "Motor2", image: "img2", description: "desc2" },
+      {
+        id: 1, name: 'Motor1', image: 'img1', description: 'desc1',
+      },
+      {
+        id: 2, name: 'Motor2', image: 'img2', description: 'desc2',
+      },
     ];
 
     useSelector.mockImplementation(() => ({
-      message: "",
+      message: '',
       motorcycles: mockMotorcycles,
     }));
 
     render(
       <MemoryRouter>
         <Motorcycles />
-      </MemoryRouter>
+      </MemoryRouter>,
     );
 
-    const motor1Element = await screen.findByText("Motor1");
-    const motor2Element = await screen.findByText("Motor2");
+    const motor1Element = await screen.findByText('Motor1');
+    const motor2Element = await screen.findByText('Motor2');
 
     expect(motor1Element).toBeInTheDocument();
     expect(motor2Element).toBeInTheDocument();
