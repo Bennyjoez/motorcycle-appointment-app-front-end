@@ -11,8 +11,8 @@ import Navbar from '../navbar';
 const Reservations = () => {
   const { motorcycles } = useSelector((state) => state.state.motorcycles);
   const createmsg = useSelector((state) => state.sessions);
-  const user = JSON.parse(window.localStorage.getItem('user'));
-  const isLoggedIn = JSON.parse(window.localStorage.getItem('logged_in'));
+  const user = useSelector((state) => state.state.sessions.user.id);
+  const isLoggedIn = useSelector((state) => state.state.sessions.loggedIn);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -22,7 +22,6 @@ const Reservations = () => {
 
   const [motorcycleIdState, setMotorcycleIdState] = useState(chosenMotorcycleId);
 
-  console.log('location_id:', motorcycleIdState);
   const [date, setDate] = useState('');
   const [city, setCity] = useState('');
   const [status, setStatus] = useState('');
@@ -52,7 +51,6 @@ const Reservations = () => {
       dispatch(createMsgAction());
     }
   }, [createmsg, created, dispatch, isLoggedIn, navigate]);
-
   if (!isLoggedIn) {
     return (
       <div className="popup-message">

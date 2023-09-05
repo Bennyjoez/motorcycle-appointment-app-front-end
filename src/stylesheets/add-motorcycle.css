@@ -75,19 +75,28 @@ textarea::placeholder {
     align-items: center;
   }
 
-  .add-motor-body {
-    width: 100%;
-    padding: 1rem;
-    min-height: 100vh;
-  }
-
   .form-container {
     height: 90vh;
   }
 
   #add-form {
-    width: 70%;
+    min-width: 70%;
     max-width: 600px;
     background-color: #fff;
+  }
+
+  .add-motor-body {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    width: 100%;
+    padding: 1rem;
+    min-height: calc(100vh - 56px);
+    background-image:
+      linear-gradient(0deg, #96bf0fe1, #96bf0fe1),
+      url(/src/images/bmw-e-power-bike.png);
+    color: white;
+    background-position: center;
+    background-size: cover;
   }
 }

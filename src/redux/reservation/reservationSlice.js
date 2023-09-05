@@ -4,32 +4,33 @@ import axios from 'axios';
 export const postReservation = createAsyncThunk(
   'postReservation',
   async (data) => {
-    const userId = JSON.parse(localStorage.getItem('user'));
-    const RESERVATION_URL = `http://localhost:3000/api/users/${userId}/reservations`;
+    const RESERVATION_URL = `http://localhost:3000/api/users/${data.user_id}/reservations`;
     const response = await axios.post(RESERVATION_URL, data);
     return response.data;
   },
 );
 
-export const getReservations = createAsyncThunk('getReservations', async () => {
-  const userId = JSON.parse(localStorage.getItem('user'));
-  const RESERVATION_URL = `http://localhost:3000/api/users/${userId}/reservations`;
-  const response = await axios.get(RESERVATION_URL, {
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  });
-  const { data } = response;
-  const reservation = data.map((reservation) => ({
-    id: reservation.id,
-    motorcycle_id: reservation.motorcycle_id,
-    user_id: reservation.user_id,
-    date: reservation.date,
-    city: reservation.city,
-    status: reservation.status,
-  }));
-  return reservation;
-});
+export const getReservations = createAsyncThunk(
+  'getReservations',
+  async (id) => {
+    const RESERVATION_URL = `http://localhost:3000/api/users/${id}/reservations`;
+    const response = await axios.get(RESERVATION_URL, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    const { data } = response;
+    const reservation = data.map((reservation) => ({
+      id: reservation.id,
+      motorcycle_id: reservation.motorcycle_id,
+      user_id: reservation.user_id,
+      date: reservation.date,
+      city: reservation.city,
+      status: reservation.status,
+    }));
+    return reservation;
+  },
+);
 
 const initialState = {
   reservation: [],

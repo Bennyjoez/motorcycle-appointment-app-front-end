@@ -35,11 +35,7 @@ const Login = () => {
       dispatch(getMotorcycles());
       navigate('/motorcycles');
     }
-  }, [
-    loggedUser.loggedIn,
-    loggedUser.message,
-    dispatch,
-  ]);
+  }, [loggedUser.loggedIn, loggedUser.message, dispatch, navigate]);
 
   return (
     <div className="form-main-container">

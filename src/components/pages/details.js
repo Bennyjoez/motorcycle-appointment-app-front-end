@@ -10,7 +10,6 @@ const Details = () => {
   const { motorcycles } = useSelector((state) => state.state.motorcycles);
 
   const filtered = motorcycles.filter((cycle) => cycle.id === motorId);
-  console.log(filtered[0]);
   return (
     <div className="details-main-container">
       <section className="details-nav-container">

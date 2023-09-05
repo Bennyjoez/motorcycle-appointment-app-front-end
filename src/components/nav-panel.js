@@ -1,6 +1,5 @@
-/* eslint-disable arrow-body-style */
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, Link } from 'react-router-dom';
 import { logOut } from '../redux/sessions/sessionsSlice';
 import '../stylesheets/navpanel.css';
@@ -9,10 +8,10 @@ import logo from '../logo.png';
 const NavPanel = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const isLoggedIn = JSON.parse(window.localStorage.getItem('logged_in'));
+  const isLoggedIn = useSelector((state) => state.state.sessions.loggedIn);
 
   const clearUserData = () => {
-    localStorage.clear();
+    sessionStorage.clear();
     dispatch(logOut());
     navigate('/');
   };

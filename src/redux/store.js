@@ -20,17 +20,3 @@ const store = configureStore({
 const persistor = persistStore(store);
 
 export { store, persistor };
-
-// import sessionsReducer from './sessions/sessionsSlice';
-
-// import motorcycleReducer from './motorcycles/motorcycleSlice';
-
-// const store = configureStore({
-//   reducer: {
-//     sessions: sessionsReducer,
-//     reservations: reservationReducer,
-//     motorcycles: motorcycleReducer,
-//   },
-// });
-
-// export default store;

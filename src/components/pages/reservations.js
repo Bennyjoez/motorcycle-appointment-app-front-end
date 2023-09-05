@@ -3,18 +3,18 @@ import React, { useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import {
   getReservations,
-
+  markReservationsAsFetched,
 } from '../../redux/reservation/reservationSlice';
 import Navbar from '../navbar';
 import '../../stylesheets/reservations.css';
 
 const Reservations = () => {
-  const isLoggedIn = JSON.parse(window.localStorage.getItem('logged_in'));
-  const user = JSON.parse(window.localStorage.getItem('user'));
+  const user = useSelector((state) => state.state.sessions.user.id);
+  const isLoggedIn = useSelector((state) => state.state.sessions.loggedIn);
   const motorcycles = useSelector(
     (state) => state.state.motorcycles.motorcycles,
   );
-  const { reservation, creationMsg } = useSelector(
+  const { reservation, reservationsFetched } = useSelector(
     (state) => state.state.reservations,
   );
 
@@ -22,32 +22,17 @@ const Reservations = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (creationMsg === 'success' && isLoggedIn) {
-      dispatch(getReservations());
+    if (!reservationsFetched && isLoggedIn) {
+      dispatch(getReservations(user));
+      dispatch(markReservationsAsFetched());
     }
+
     if (!isLoggedIn) {
       setTimeout(() => {
         navigate('/login');
       }, 2000);
     }
-  }, [dispatch, isLoggedIn, navigate]);
-
-  // useEffect(() => {
-  //   // Fetch reservations only if not already fetched and user is logged in
-  //   if (!reservationsFetched && isLoggedIn) {
-  //     dispatch(getReservations());
-
-  //     // Mark reservations as fetched to avoid repeated requests
-  //     dispatch(markReservationsAsFetched());
-  //   }
-
-  //   if (!isLoggedIn) {
-  //     setTimeout(() => {
-  //       navigate('/login');
-  //     }, 2000);
-  //   }
-  // }, [dispatch, isLoggedIn, navigate, reservationsFetched]);
-  // console.log(reservationsFetched);
+  }, [dispatch, navigate, reservationsFetched, isLoggedIn, user]);
 
   const sortReservations = (a, b) => {
     const dateA = new Date(a.date);
