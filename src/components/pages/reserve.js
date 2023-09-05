@@ -51,6 +51,7 @@ const Reservations = () => {
       dispatch(createMsgAction());
     }
   }, [createmsg, created, dispatch, isLoggedIn, navigate]);
+
   if (!isLoggedIn) {
     return (
       <div className="popup-message">
@@ -153,6 +154,7 @@ const Reservations = () => {
             defaultValue={chosenMotorcycleId || ''}
             name="motorcycle_id"
             id="motorcycle-drop-down"
+            data-testid="motorcycle-drop-down"
             onChange={(e) => setMotorcycleIdState(e.target.value)}
           >
             <option value="">Select a motorcycle</option>
@@ -169,6 +171,7 @@ const Reservations = () => {
           <select
             name="city"
             id="city-dropdown"
+            data-testid="city-dropdown"
             onChange={(e) => setCity(e.target.value)}
           >
             <option value="">Select a city</option>
@@ -182,6 +185,7 @@ const Reservations = () => {
           <input
             type="date"
             id="date-picker"
+            data-testid="date-picker"
             name="date"
             min={getCurrentDate()}
             onChange={(e) => setDate(e.target.value)}
@@ -190,6 +194,7 @@ const Reservations = () => {
           <select
             name="status"
             id="status-dropdown"
+            data-testid="status-dropdown"
             onChange={(e) => setStatus(e.target.value)}
           >
             <option value="">Select a status</option>
