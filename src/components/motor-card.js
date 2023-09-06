@@ -24,15 +24,15 @@ const MotorCard = ({ name, imgUrl, description }) => {
       <div className="motor-name">{name}</div>
       <p className="card-description">{checkLen(description)}</p>
       <div className="icon-container">
-        <a href="fb.com">
+        <span className="icons">
           <FaFacebookF />
-        </a>
-        <a href="twitter.com">
+        </span>
+        <span className="icons">
           <FaTwitter />
-        </a>
-        <a href="instagram.com">
+        </span>
+        <span className="icons">
           <ImInstagram />
-        </a>
+        </span>
       </div>
     </div>
   );
