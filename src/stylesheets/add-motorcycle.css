@@ -1,0 +1,103 @@
+#add-form {
+  margin-top: 10px;
+  display: grid;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  background-color: #fff;
+}
+
+#add-form input {
+  height: 30px;
+  padding: 5px;
+  min-width: 300px;
+  width: 100%;
+  margin-block: 10px;
+  border-radius: 5px;
+  border: 1px solid #96bf0fe1;
+  outline: none;
+}
+
+#add-form input::placeholder {
+  color: #96bf0fe1;
+}
+
+.add-motor-main-container {
+  overflow: hidden;
+}
+
+.add-motor-body {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  width: 100%;
+  padding: 1rem;
+  min-height: calc(100vh - 56px);
+  background-image:
+    linear-gradient(0deg, #96bf0fe1, #96bf0fe1),
+    url(/src/images/bmw-e-power-bike.png);
+  color: white;
+  background-position: center;
+  background-size: cover;
+}
+
+.form-container {
+  margin-top: 50px;
+}
+
+textarea {
+  border-radius: 5px;
+  min-width: 300px;
+  width: 100%;
+  padding: 5px;
+  margin-block: 10px;
+  border: 1px solid #96bf0fe1;
+  outline: none;
+}
+
+textarea::placeholder {
+  color: #96bf0fe1;
+}
+
+.submit {
+  padding: 4px;
+  cursor: pointer;
+  border: 1px solid #96bf0fe1;
+  outline: none;
+  border-radius: 10px;
+  background-color: #96bf0fe1;
+  color: white;
+}
+
+@media only screen and (min-width: 768px) {
+  .add-motor-main-container {
+    display: grid;
+    grid-template-columns: 15vw 85vw;
+    grid-template-rows: 100%;
+  }
+
+  .form-container {
+    height: 90vh;
+  }
+
+  #add-form {
+    min-width: 70%;
+    max-width: 600px;
+    background-color: #fff;
+  }
+
+  .add-motor-body {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    width: 100%;
+    padding: 1rem;
+    min-height: calc(100vh - 56px);
+    background-image:
+      linear-gradient(0deg, #96bf0fe1, #96bf0fe1),
+      url(/src/images/bmw-e-power-bike.png);
+    color: white;
+    background-position: center;
+    background-size: cover;
+  }
+}

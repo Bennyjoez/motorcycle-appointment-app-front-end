@@ -1,0 +1,74 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  background-image: url('../../public/login-image.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.backgrd-overlay {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #000;
+  filter: opacity(0.92);
+}
+
+.user-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2em 3em;
+}
+
+.login-link {
+  text-decoration: none;
+  font-weight: 500;
+  color: #97bf0f;
+}
+
+.session-redirect {
+  margin: 0;
+}
+
+.session-redirect > em {
+  color: #fff;
+  margin-right: 0.5em;
+}
+
+.card-title {
+  margin-bottom: 0.2em;
+  font-weight: 400;
+  color: #fff;
+}
+
+#username {
+  width: 100%;
+  padding: 0.2em;
+  font-size: 1em;
+  outline: none;
+  border-radius: 3px;
+  border: 1px solid #97bf0f;
+  margin-bottom: 2em;
+}
+
+.btn {
+  background-color: #97bf0f;
+  width: 100%;
+  border: none;
+  border-radius: 4px;
+  padding: 0.4em 0;
+  color: #fff;
+  font-size: 0.9em;
+  margin-bottom: 2em;
+  cursor: pointer;
+}

@@ -1,0 +1,112 @@
+.reservations-main-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+table {
+  width: 100%;
+}
+
+table,
+th,
+td {
+  border: 2px solid #96bf0fe1;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 5px;
+  text-align: center;
+}
+
+th {
+  font-weight: 700;
+}
+
+.reservations-container {
+  width: 100%;
+}
+
+.reservations-list-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  padding: 50px 30px 30px 30px;
+  width: 100%;
+}
+
+.reservations-list-container h1 {
+  font-weight: 900;
+  font-family: "Poppins", sans-serif;
+}
+
+.reservations-list p {
+  padding: 20px;
+  background-color: white;
+  color: #96bf0fe1;
+  border-radius: 100px;
+  border: 2px solid #96bf0fe1;
+  font-weight: 900;
+  text-align: center;
+  margin-bottom: 20px;
+  font-family: "Poppins", sans-serif;
+}
+
+@media (min-width: 768px) {
+  .reservations-main-container {
+    width: 100%;
+    display: grid;
+
+    /* flex-direction: row; */
+    grid-template-columns: 15vw 85vw;
+  }
+
+  .reservations-list-container {
+    padding: 30px;
+    margin: auto;
+    max-width: 100%;
+  }
+
+  .reservations-list-container h1 {
+    font-size: 18px;
+  }
+
+  .reservations-list p {
+    padding: 10px;
+    background-color: white;
+    color: #96bf0fe1;
+    border-radius: 100px;
+    border: 1px solid #96bf0fe1;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 20px;
+    font-family: "Poppins", sans-serif;
+    font-size: 12px;
+  }
+
+  table,
+  th,
+  td {
+    border: 2px solid #96bf0fe1;
+    border-collapse: collapse;
+  }
+
+  th,
+  td {
+    padding: 10px;
+    text-align: center;
+  }
+
+  td {
+    font-size: 18px;
+  }
+
+  th {
+    font-weight: 700;
+    font-size: 22px;
+  }
+}
