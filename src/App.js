@@ -12,7 +12,7 @@ import Delete from './components/pages/delete';
 import Reserve from './components/pages/reserve';
 import Details from './components/pages/details';
 
-function App() {
+const App = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     if (localStorage.getItem('user')) {
@@ -34,6 +34,6 @@ function App() {
       </Routes>
     </Router>
   );
-}
+};
 
 export default App;

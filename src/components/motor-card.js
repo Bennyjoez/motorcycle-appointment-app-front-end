@@ -5,12 +5,12 @@ import { FaFacebookF, FaTwitter } from 'react-icons/fa';
 import { ImInstagram } from 'react-icons/im';
 
 const MotorCard = ({ name, imgUrl, description }) => {
-  function checkLen(str) {
+  const checkLen = (str) => {
     if (str.length > 50) {
       return `${str.slice(0, 50)}...`;
     }
     return str;
-  }
+  };
 
   return (
     <div className="card-main-container">

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import NavPanel from './nav-panel';
 import '../stylesheets/navbar.css';
 
-function Navbar() {
+const Navbar = () => {
   const [menuToggleState, setMenuToggleState] = useState('hide');
 
   const handleMenuToggle = () => {
@@ -35,6 +35,6 @@ function Navbar() {
       </section>
     </div>
   );
-}
+};
 
 export default Navbar;
