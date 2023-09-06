@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { postMotorcycles } from '../redux/motorcycles/motorcycleSlice';
 
-function AddMotorcycleForm() {
+const AddMotorcycleForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -88,6 +88,6 @@ function AddMotorcycleForm() {
       </form>
     </div>
   );
-}
+};
 
 export default AddMotorcycleForm;
