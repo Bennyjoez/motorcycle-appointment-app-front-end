@@ -4,6 +4,7 @@ import { deleteMotorcycle } from '../../redux/motorcycles/motorcycleSlice';
 import Navbar from '../navbar';
 
 import '../../stylesheets/delete.css';
+import { updateReservations } from '../../redux/reservation/reservationSlice';
 
 const Delete = () => {
   const dispatch = useDispatch();
@@ -16,6 +17,12 @@ const Delete = () => {
     dispatch(deleteMotorcycle(itemId));
 
     setItems(updatedItems);
+
+    const deleted = updatedItems.find((item) => item.id === itemId);
+
+    if (!deleted) {
+      dispatch(updateReservations(itemId));
+    }
   };
 
   return (
