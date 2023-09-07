@@ -52,6 +52,13 @@ const reservationSlice = createSlice({
       state.reservationsFetched = true;
     },
 
+    updateReservations: (state, action) => {
+      const motorcycleIdToRemove = action.payload;
+
+      const arr = state.reservation.filter((item) => item.motorcycle_id !== motorcycleIdToRemove);
+
+      state.reservation = arr;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -82,5 +89,7 @@ const reservationSlice = createSlice({
   },
 });
 
-export const { createMsgAction, markReservationsAsFetched } = reservationSlice.actions;
+export const {
+  createMsgAction, markReservationsAsFetched, updateReservations,
+} = reservationSlice.actions;
 export default reservationSlice.reducer;
