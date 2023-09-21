@@ -1,10 +1,12 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
+const url = 'https://motorcycle-appointment.onrender.com/';
+
 export const postReservation = createAsyncThunk(
   'postReservation',
   async (data) => {
-    const RESERVATION_URL = `http://localhost:3000/api/users/${data.user_id}/reservations`;
+    const RESERVATION_URL = `${url}api/users/${data.user_id}/reservations`;
     const response = await axios.post(RESERVATION_URL, data);
     return response.data;
   },
@@ -13,7 +15,7 @@ export const postReservation = createAsyncThunk(
 export const getReservations = createAsyncThunk(
   'getReservations',
   async (id) => {
-    const RESERVATION_URL = `http://localhost:3000/api/users/${id}/reservations`;
+    const RESERVATION_URL = `${url}api/users/${id}/reservations`;
     const response = await axios.get(RESERVATION_URL, {
       headers: {
         'Content-Type': 'application/json',

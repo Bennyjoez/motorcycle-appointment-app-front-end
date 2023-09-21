@@ -1,7 +1,9 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
+const url = 'https://motorcycle-appointment.onrender.com/';
+
 export const postRegister = createAsyncThunk('postRegister', async (data) => {
-  const response = await fetch(`http://localhost:3000/api/${data.endpoint}`, {
+  const response = await fetch(`${url}api/${data.endpoint}`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
