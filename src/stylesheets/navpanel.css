@@ -34,6 +34,10 @@ a.nav-link {
   border-bottom: 2px solid transparent;
   transition: border-color 0.5s ease;
   cursor: pointer;
+
+  &.active {
+    background-color: #97bf0f;
+  }
 }
 
 a.nav-link:hover {

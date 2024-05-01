@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate, NavLink } from 'react-router-dom';
 import { FaFacebookF, FaTwitter } from 'react-icons/fa';
 import { ImInstagram } from 'react-icons/im';
 import { logOut } from '../redux/sessions/sessionsSlice';
@@ -23,21 +23,21 @@ const NavPanel = () => {
         <img src={logo} alt="logo" width={100} />
       </div>
       <div className="nav-links-container">
-        <Link to="/motorcycles" className="nav-link">
+        <NavLink to="/motorcycles" className="nav-link">
           Motorcyles
-        </Link>
-        <Link to="/reserve" className="nav-link">
+        </NavLink>
+        <NavLink to="/reserve" className="nav-link">
           Reserve
-        </Link>
-        <Link to="/reservations" className="nav-link">
+        </NavLink>
+        <NavLink to="/reservations" className="nav-link">
           Reservations
-        </Link>
-        <Link to="/add-motorcycle" className="nav-link">
+        </NavLink>
+        <NavLink to="/add-motorcycle" className="nav-link">
           Add Motorcycle
-        </Link>
-        <Link to="/delete" className="nav-link">
+        </NavLink>
+        <NavLink to="/delete" className="nav-link">
           Delete
-        </Link>
+        </NavLink>
         <div>
           {isLoggedIn && (
             <button
