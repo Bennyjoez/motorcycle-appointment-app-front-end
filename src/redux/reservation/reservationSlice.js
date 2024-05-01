@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-const url = 'https://motorcycle-appointment.onrender.com/';
+const url = process.env.REACT_APP_ENV === 'Development' ? process.env.REACT_APP_BACKEND_DEVELOPMENT_URL : process.env.REACT_APP_BACKEND_PRODUCTION_URL;
 
 export const postReservation = createAsyncThunk(
   'postReservation',

@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
-const url = 'https://motorcycle-appointment.onrender.com/';
+const url = process.env.REACT_APP_ENV === 'Development' ? process.env.REACT_APP_BACKEND_DEVELOPMENT_URL : process.env.REACT_APP_BACKEND_PRODUCTION_URL;
 
 export const postRegister = createAsyncThunk('postRegister', async (data) => {
   const response = await fetch(`${url}api/${data.endpoint}`, {
